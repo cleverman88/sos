@@ -1,12 +1,10 @@
 extends Control
 
 func _on_play_pressed():
-	print("1")
 	get_tree().change_scene_to_file("res://Scenes/main_game.tscn")
 
-func _on_Options_pressed():
-	print("2")
-	get_tree().change_scene_to_file("res://Scenes/Options.tscn")
+func _on_options_pressed():
+	get_tree().change_scene_to_file("res://Scenes/options_menu.tscn")
 
 func _on_how_to_play_pressed():
 	pass
