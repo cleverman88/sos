@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://6170weclm800"]
+
+[ext_resource type="PackedScene" uid="uid://c1ybkt20go022" path="res://Scenes/mic_stand.tscn" id="1_4eyq0"]
+[ext_resource type="Script" path="res://Scripts/track.gd" id="2_rdlyy"]
+
+[node name="Game" type="Node2D"]
+
+[node name="mic_stand" parent="." instance=ExtResource("1_4eyq0")]
+position = Vector2(680, 336)
+
+[node name="track" type="Node2D" parent="."]
+script = ExtResource("2_rdlyy")
+
+[node name="track_1" type="Line2D" parent="track"]
+position = Vector2(5.4, 0)
+scale = Vector2(0.9, 1)
+points = PackedVector2Array(65.1111, 248)
+default_color = Color(0, 0, 0, 1)
+
+[node name="track_2" type="Line2D" parent="track"]
+position = Vector2(10.26, 0)
+scale = Vector2(0.81, 1)
+points = PackedVector2Array(66.3457, 256)
+default_color = Color(0, 0, 0, 1)
+
+[node name="track_3" type="Line2D" parent="track"]
+position = Vector2(7.13775, 24.6)
+scale = Vector2(0.863551, 0.9)
+points = PackedVector2Array(65.847, 266)
+default_color = Color(0, 0, 0, 1)
