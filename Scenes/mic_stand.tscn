@@ -19,4 +19,5 @@ position = Vector2(27.5, -77.5)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_hfkob")
 
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
 [connection signal="child_entered_tree" from="PlaceholderMic" to="." method="_on_placeholder_mic_child_entered_tree"]
