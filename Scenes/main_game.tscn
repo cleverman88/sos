@@ -6,15 +6,19 @@
 
 [node name="Game" type="Node2D"]
 
-[node name="mic_stand" parent="." instance=ExtResource("1_4eyq0")]
+[node name="mic_stand" parent="." groups=["mic"] instance=ExtResource("1_4eyq0")]
 position = Vector2(680, 336)
 
-[node name="spawn" type="Marker2D" parent="."]
+[node name="spawn" type="Marker2D" parent="." groups=["spawn"]]
 position = Vector2(128, 256)
 script = ExtResource("4_0fhsn")
 
 [node name="conductor" type="Node" parent="."]
 script = ExtResource("3_7j3lf")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_d8cpq")
+autoplay = true
 
 [connection signal="area_shape_entered" from="mic_stand" to="spawn" method="_on_mic_stand_area_shape_entered"]
 [connection signal="area_shape_exited" from="mic_stand" to="spawn" method="_on_mic_stand_area_shape_exited"]

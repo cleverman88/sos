@@ -21,6 +21,9 @@ folder_colors={
 "res://Assets/audio/": "red",
 "res://Scripts/audio/": "red"
 }
+[autoload]
+
+Hack="*res://Scripts/HACK.gd"
 
 [rendering]
 
