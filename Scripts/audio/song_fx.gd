@@ -34,17 +34,17 @@ func _init(song: Song, transition: EFFECT, begin_at: float, durationInBeats: flo
 	if data == null:
 		if type == EFFECT.FADE_IN:
 			data = Vector2(MIN_VOL, MAX_VOL)
-		if type == EFFECT.FADE_IN:
+		if type == EFFECT.FADE_OUT:
 			data = Vector2(MAX_VOL, MIN_VOL)
 	
 	if type == EFFECT.BPM_CHANGE:
 		if data == null:
 			printerr("TRYING TO CHANGE BPM WITH NO DATA")
-			data = Vector2(0, 0)
-		if data[0] == 0:
+			data = Vector2(0.0, 0.0)
+		if data[0] == 0.0:
 			data[0] = song.bpm
-		if data[1] == 0:
-			data[0] = song.bpm
+		if data[1] == 0.0:
+			data[1] = song.bpm
 	
 	if type == EFFECT.LOOP and durationBeats == 0:
 			durationBeats = song.player.stream.get_length()

@@ -62,7 +62,7 @@ func _load_metadata(data_path: String, fade_in_override = -1, fade_out_override 
 	
 	var fadeOutBeats = (fade_out_override if fade_out_override >= 0 else 16) * spb
 	if fadeOutBeats != 0:
-		create_fx(SongFX.new(self, SongFX.EFFECT.FADE_IN, songStartPos, fadeOutBeats))
+		create_fx(SongFX.new(self, SongFX.EFFECT.FADE_OUT, songStartPos, fadeOutBeats))
 
 ##################
 ##    CONTROL   ##
@@ -109,7 +109,7 @@ func _to_duration(beats) -> float:
 	return beats * spb
 
 func _to_beats(duration) -> float:
-	return duration / spb
+	return duration / spb - 1
 
 ##################
 ## UPDATE LOOP  ##
@@ -123,7 +123,7 @@ func _process(_delta):
 func update_song_pos():
 	var pos = player.get_playback_position()
 	songPos = pos - songStartPos
-	songPosBeats = _to_beats(songPos) - 1
+	songPosBeats = _to_beats(songPos)
 	dspTime = Time.get_unix_time_from_system() - startedTime
 
 func process_beat():

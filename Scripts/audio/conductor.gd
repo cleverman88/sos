@@ -29,9 +29,9 @@ func select_next_song():
 		if fx.type == SongFX.EFFECT.FADE_IN:
 			# use fade in duration to change the tempos of both tracks
 			s.create_fx(SongFX.new(s, SongFX.EFFECT.BPM_CHANGE, s.songStartPos, fx.durationBeats, Vector2(playing[0].bpm, 0)))
-			
+			# TODO: why song end?
 			playNextAt = playing[0].songEndPos - playing[0]._to_duration(fx.durationBeats)
-			s.create_fx(SongFX.new(s, SongFX.EFFECT.BPM_CHANGE, playNextAt, fx.durationBeats, Vector2(0, s.bpm)))
+			playing[0].create_fx(SongFX.new(playing[0], SongFX.EFFECT.BPM_CHANGE, playNextAt, fx.durationBeats, Vector2(0, s.bpm)))
 
 func _on_song_beat(song: Song):
 	super._on_song_beat(song)
