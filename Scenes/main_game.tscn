@@ -13,12 +13,9 @@ position = Vector2(680, 336)
 position = Vector2(128, 256)
 script = ExtResource("4_0fhsn")
 
-[node name="SpawnTimer" type="Timer" parent="spawn"]
-
 [node name="conductor" type="Node" parent="."]
 script = ExtResource("3_7j3lf")
 
 [connection signal="area_shape_entered" from="mic_stand" to="spawn" method="_on_mic_stand_area_shape_entered"]
 [connection signal="area_shape_exited" from="mic_stand" to="spawn" method="_on_mic_stand_area_shape_exited"]
 [connection signal="body_entered" from="mic_stand" to="mic_stand" method="_on_body_entered"]
-[connection signal="timeout" from="spawn/SpawnTimer" to="spawn" method="_on_spawn_timer_timeout"]
