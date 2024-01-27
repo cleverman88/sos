@@ -6,7 +6,6 @@ var node_scene = preload("res://Scenes/note.tscn")
 
 
 var spawned_nodes = [] 
-
 var INSIDE = false
 	
 
@@ -35,10 +34,12 @@ func _on_mic_stand_area_shape_entered(area_rid, area, area_shape_index, local_sh
 
 
 func missed(node):
+	get_tree().get_nodes_in_group("combo")[0].total_combo = 1
 	print("MISSED")
 	
 func hit(node):
-
+	get_tree().get_nodes_in_group("combo")[0].total_combo *= 2
+	get_tree().get_nodes_in_group("score")[0].total_score += (get_tree().get_nodes_in_group("combo")[0].total_combo *  19)
 	print("HIT")
 
 
