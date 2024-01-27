@@ -32,6 +32,6 @@ func _process(delta):
 func _on_song_beat(_song: Song):
 	pass
 
-func _on_song_stop(song: Song):
+func _on_song_stop(song: Song, endTime: float):
 	remove_child(song.player)
 	playing.erase(song)

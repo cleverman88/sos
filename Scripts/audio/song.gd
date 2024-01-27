@@ -50,17 +50,17 @@ func _load_metadata(data_path: String, fade_in_override = -1, fade_out_override 
 	bpm = 110.0
 	spb = 60.0 / bpm
 	
-	songStartPos = 0.271 # TODO: not EXACTLY right, @djehiggins sort plz
+	songStartPos = 0.22 # TODO: not EXACTLY right, @djehiggins sort plz
 	songEndPos = 0
 	if songEndPos <= songStartPos:
 		songEndPos = player.stream.get_length() - songStartPos
 		
 	# load effects 
-	var fadeInBeats = (fade_in_override if fade_in_override >= 0 else 16) * spb
+	var fadeInBeats = (fade_in_override if fade_in_override >= 0 else 0) * spb
 	if fadeInBeats != 0:
 		create_fx(SongFX.new(self, SongFX.EFFECT.FADE_IN, songStartPos, fadeInBeats))
 	
-	var fadeOutBeats = (fade_out_override if fade_out_override >= 0 else 16) * spb
+	var fadeOutBeats = (fade_out_override if fade_out_override >= 0 else 0) * spb
 	if fadeOutBeats != 0:
 		create_fx(SongFX.new(self, SongFX.EFFECT.FADE_OUT, songStartPos, fadeOutBeats))
 
@@ -70,11 +70,11 @@ func _load_metadata(data_path: String, fade_in_override = -1, fade_out_override 
 func play():
 	startedTime = Time.get_unix_time_from_system()
 	player.play(songStartPos)
-	song_start.emit(startedTime)
+	song_start.emit(self)
 	
 func stop():
 	player.stop()
-	song_stop.emit(source)
+	song_stop.emit(self, Time.get_unix_time_from_system())
 
 
 func set_playback_volume(db):

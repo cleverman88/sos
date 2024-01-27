@@ -26,7 +26,7 @@ var data
 func _init(song: Song, transition: EFFECT, begin_at: float, durationInBeats: float, d = null):
 	startPos = begin_at # TODO: beginAtBeats? beginAtBars?
 	durationBeats = durationInBeats
-	duration = startPos + durationBeats * song.spb
+	duration = startPos + (durationBeats * song.spb)
 	completePos = startPos + duration
 	type = transition
 	data = d

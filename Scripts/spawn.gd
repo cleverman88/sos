@@ -14,7 +14,7 @@ var is_paused = false
 func _ready():
 	conductor.beat.connect(_on_beat)
 	
-func _on_beat(barsAndBeat: Vector2):
+func _on_beat(song: Song):
 	if not is_paused:
 		var spawned_node = node_scene.instantiate()
 		spawned_nodes.append(spawned_node)

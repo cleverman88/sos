@@ -14,6 +14,7 @@ func _ready():
 	load_song(songs[1], "", 0, 0)
 	queue[0].bpm = 120
 	queue[0].spb = 60.0 / 120
+	queue[0].songStartPos = 0.01
 	play_next()
 	
 func play_next():
@@ -23,15 +24,15 @@ func play_next():
 
 func select_next_song():
 	# TODO: how do we select the song better
-	var s = load_song(songs[rng.randi_range(0, songs.size() - 1)], "")
+	var s = load_song(songs[0], "")
 	
 	for fx in s.fxs:
 		if fx.type == SongFX.EFFECT.FADE_IN:
 			# use fade in duration to change the tempos of both tracks
-			s.create_fx(SongFX.new(s, SongFX.EFFECT.BPM_CHANGE, s.songStartPos, fx.durationBeats, Vector2(playing[0].bpm, 0)))
+			s.create_fx(SongFX.new(s, SongFX.EFFECT.BPM_CHANGE, s.songStartPos, fx.durationBeats, Vector2(playing[0].bpm, s.bpm)))
 			# TODO: why song end?
 			playNextAt = playing[0].songEndPos - playing[0]._to_duration(fx.durationBeats)
-			playing[0].create_fx(SongFX.new(playing[0], SongFX.EFFECT.BPM_CHANGE, playNextAt, fx.durationBeats, Vector2(0, s.bpm)))
+			playing[0].create_fx(SongFX.new(playing[0], SongFX.EFFECT.BPM_CHANGE, playNextAt, fx.durationBeats, Vector2(playing[0].bpm, s.bpm)))
 
 func _on_song_beat(song: Song):
 	super._on_song_beat(song)
@@ -48,7 +49,7 @@ func _on_song_beat(song: Song):
 	if playing.size() < 2 and queue.size() == 0:
 		select_next_song()
 
-func _on_song_stop(song: Song):
-	super._on_song_stop(song)
-	if playing.length() == 0:
+func _on_song_stop(song: Song, endTime: float):
+	super._on_song_stop(song, endTime)
+	if playing.size() == 0:
 		play_next() # incase there is no transition, play the next track

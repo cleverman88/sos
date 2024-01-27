@@ -16,33 +16,25 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if total_lives >= 7:
+	if total_lives == 10:
 		good.visible = true
 		medium.visible = false
 		bad.visible = false
-		if total_lives != prev_lives:
-			prev_lives = total_lives
-			boom.play()
-			medium_animation.play("expload")
 		return
-	if total_lives >= 4:
-		if total_lives != prev_lives:
-			prev_lives = total_lives
-			boom.play()
-			bad_animation.play("expload")
+	if total_lives == 6 and prev_lives != total_lives:
 		good.visible = false
 		medium.visible = true
 		bad.visible = false
-		if total_lives != prev_lives:
-			prev_lives = total_lives
-			boom.play()
-			bad_animation.play("expload")
+		prev_lives = total_lives
+		boom.play()
+		medium_animation.play("expload")
 		return
-	else:
-		if total_lives != prev_lives:
-			prev_lives = total_lives
-			boom.play()
-			bad_animation.play("expload")
+	if total_lives == 2 and prev_lives != total_lives:
 		good.visible = false
 		medium.visible = false
 		bad.visible = true
+		prev_lives = total_lives
+		boom.play()
+		bad_animation.play("expload")
+		return
+
