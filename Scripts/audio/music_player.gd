@@ -11,8 +11,8 @@ var queue = []   # the songs we want to play next
 func _ready():
 	pass
 
-func load_song(song_path: String, data_path, fade_in_override = -1, fade_out_override = -1) -> Song:
-	var s = Song.new(song_path, data_path, fade_in_override, fade_out_override)
+func load_song(song_path: String, fade_in_override = -1, fade_out_override = -1) -> Song:
+	var s = Song.new(song_path, fade_in_override, fade_out_override)
 	s.song_beat.connect(_on_song_beat)
 	s.song_stop.connect(_on_song_stop, CONNECT_ONE_SHOT)
 	add_child(s.player)
@@ -21,6 +21,8 @@ func load_song(song_path: String, data_path, fade_in_override = -1, fade_out_ove
 	
 func play_next() -> Song:
 	var s = queue.pop_front()
+	if s == null:
+		return s
 	s.play()
 	playing.append(s) 
 	return s

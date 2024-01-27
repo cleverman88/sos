@@ -29,13 +29,10 @@ var lastBeatPos: float
 ##################
 ##     INIT     ##
 ##################
-func _init(song_path: String, data_path: String, fade_in_override = -1, fade_out_override = -1):
+func _init(song_path: String, fade_in_override = -1, fade_out_override = -1):
 	if not FileAccess.file_exists(song_path):
 		push_error("could not find audio file: " + song_path)
 		return
-	#if not FileAccess.file_exists(data_path):
-		#push_error("could not find data file: " + data_path)
-		#return
 	
 	source = song_path
 	player = AudioStreamPlayer.new()
@@ -43,15 +40,19 @@ func _init(song_path: String, data_path: String, fade_in_override = -1, fade_out
 	player.stream = load(song_path)
 	player.finished.connect(stop)
 	
-	_load_metadata(data_path, fade_in_override, fade_out_override)
+	_load_metadata(song_path, fade_in_override, fade_out_override)
 	
-func _load_metadata(data_path: String, fade_in_override = -1, fade_out_override = -1):
-	# TODO: load bpm, start time, fade data from data_path
-	bpm = 110.0
+func _load_metadata(song_path: String, fade_in_override = -1, fade_out_override = -1):
+	var file = "res://Assets/tracks/audio_meta.json"
+	var json_as_text = FileAccess.get_file_as_string(file)
+	var json_as_dict = JSON.parse_string(json_as_text)
+	var meta = json_as_dict[song_path]
+	
+	bpm = meta["bpm"]
 	spb = 60.0 / bpm
 	
-	songStartPos = 0.22 # TODO: not EXACTLY right, @djehiggins sort plz
-	songEndPos = 0
+	songStartPos = meta["start"]
+	songEndPos = meta["end"] if meta.has("end") else 0
 	if songEndPos <= songStartPos:
 		songEndPos = player.stream.get_length() - songStartPos
 		
@@ -75,7 +76,6 @@ func play():
 func stop():
 	player.stop()
 	song_stop.emit(self, Time.get_unix_time_from_system())
-
 
 func set_playback_volume(db):
 	player.volume_db = db
@@ -104,6 +104,9 @@ func get_current_spb() -> float:
 
 func get_remaining_beats() -> float:
 	return _to_beats(get_remaining())
+	
+func get_duration_next_beat() -> float:
+	return _to_duration(1 - (songPosBeats - int(songPosBeats)))
 
 func _to_duration(beats) -> float:
 	return beats * spb

@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://pdxjo0p8pxk0"]
+[gd_scene load_steps=5 format=3 uid="uid://pdxjo0p8pxk0"]
 
 [ext_resource type="Script" path="res://Scripts/Menu.gd" id="1_pu4h4"]
 [ext_resource type="Texture2D" uid="uid://c131nuiw1p1xg" path="res://Assets/optionsbackground.jpg" id="2_5agsb"]
-[ext_resource type="AudioStream" uid="uid://k7m8y36dqsb2" path="res://Assets/GGJ24_Title_Screen_Track (1).wav" id="2_p40tb"]
 [ext_resource type="Shader" path="res://Shaders/main_game.gdshader" id="3_o8mj4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xrufs"]

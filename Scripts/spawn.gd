@@ -1,6 +1,6 @@
 extends Marker2D
 
-var node_scene = preload("res://Scenes/note.tscn")
+const note_asset = preload("res://Scenes/note.tscn")
 
 
 
@@ -11,20 +11,23 @@ var spawned_nodes = []
 var INSIDE = false
 var is_paused = false 
 
+var pathDuration = 0.5
+
 func _ready():
 	conductor.beat.connect(_on_beat)
 	
 func _on_beat(song: Song):
 	if not is_paused:
-		var barsBeats = song.get_bars_and_beats()
-		var over = barsBeats[1] - int(barsBeats[1])
-		var nextBeatAt = song._to_duration(1) - over
-		var spawned_node = node_scene.instantiate()
-		spawned_nodes.append(spawned_node)
-		add_child(spawned_node)
-		spawned_node.global_position = position
-		var a = spawned_node.get_node("AnimationPlayer")
-		a.play("note_move")
+		var nextBeatIn = song.get_duration_next_beat()
+		var t = get_tree().create_timer(nextBeatIn - pathDuration)
+		t.timeout.connect(func ():
+			var spawned_node = note_asset.instantiate()
+			spawned_nodes.append(spawned_node)
+			add_child(spawned_node)
+			spawned_node.global_position = position
+			var a = spawned_node.get_node("AnimationPlayer")
+			a.play("note_move")
+		)
 
 func _input(event):
 	if event.is_action_pressed("ui_right"):  # Check if the right arrow key was pressed

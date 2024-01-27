@@ -24,7 +24,6 @@ func _on_ready():
 	add_child(music)
 	
 	# loop the title theme track
-	var s = music.load_song("res://Assets/audio/audio/menu/GGJ24_Title_Screen_Track.wav", "",  0, 0)
-	s.songStartPos = 0.113
+	var s = music.load_song("res://Assets/tracks/menu/GGJ24_Title_Screen_Track.wav")
 	s.create_fx(SongFX.new(s, SongFX.EFFECT.LOOP, s.songStartPos, 0))
 	music.play_next()

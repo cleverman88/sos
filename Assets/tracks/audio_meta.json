@@ -1,0 +1,18 @@
+{
+	"res://Assets/tracks/game/GGJ24_Track_1_Demo_110_BPM_C_Minor.wav": {
+		"start": 0.113,
+		"bpm": 110
+	},
+	"res://Assets/tracks/game/Basic_Ah_Beat_120BPM.wav": {
+		"start": 0.113,
+		"bpm": 120
+	},
+	"res://Assets/tracks/game/GGJ24_Track_2_130_BPM_C_Minor.wav": {
+		"start": 0.113,
+		"bpm": 130
+	},
+	"res://Assets/tracks/menu/GGJ24_Title_Screen_Track.wav": {
+		"start": 0.113,
+		"bpm": 120
+	}
+}

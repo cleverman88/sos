@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dafi1wvoemier"
-path="res://.godot/imported/GGJ24_Title_Screen_Track.wav-a0bd4d3d66f95269b4ad4d228fb26739.sample"
+path="res://.godot/imported/GGJ24_Title_Screen_Track.wav-7c7f914ce50b5f4b36261dad10f2fad7.sample"
 
 [deps]
 
-source_file="res://Assets/audio/audio/menu/GGJ24_Title_Screen_Track.wav"
-dest_files=["res://.godot/imported/GGJ24_Title_Screen_Track.wav-a0bd4d3d66f95269b4ad4d228fb26739.sample"]
+source_file="res://Assets/tracks/menu/GGJ24_Title_Screen_Track.wav"
+dest_files=["res://.godot/imported/GGJ24_Title_Screen_Track.wav-7c7f914ce50b5f4b36261dad10f2fad7.sample"]
 
 [params]
 

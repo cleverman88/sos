@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dqgqck3g53cho"
-path="res://.godot/imported/Basic_Ah_Beat_120BPM.wav-a499e767ae44ced428f843c0a15c642d.sample"
+path="res://.godot/imported/Basic_Ah_Beat_120BPM.wav-ae3e3f3105d1676318bf38435ec35717.sample"
 
 [deps]
 
-source_file="res://Assets/audio/audio/game/Basic_Ah_Beat_120BPM.wav"
-dest_files=["res://.godot/imported/Basic_Ah_Beat_120BPM.wav-a499e767ae44ced428f843c0a15c642d.sample"]
+source_file="res://Assets/tracks/game/Basic_Ah_Beat_120BPM.wav"
+dest_files=["res://.godot/imported/Basic_Ah_Beat_120BPM.wav-ae3e3f3105d1676318bf38435ec35717.sample"]
 
 [params]
 

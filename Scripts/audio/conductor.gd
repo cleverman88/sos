@@ -4,27 +4,29 @@ class_name Conductor
 
 var rng = RandomNumberGenerator.new()
 const songs = [
-	"res://Assets/audio/audio/game/GGJ24_Track_1_Demo_110_BPM_C_Minor.wav",
-	"res://Assets/audio/audio/game/Basic_Ah_Beat_120BPM.wav",
+	"res://Assets/tracks/game/GGJ24_Track_1_Demo_110_BPM_C_Minor.wav",
+	"res://Assets/tracks/game/Basic_Ah_Beat_120BPM.wav",
+	"res://Assets/tracks/game/GGJ24_Track_2_130_BPM_C_Minor.wav",
 ]
 var playNextAt: float # when to play the next song
-
+var level = 0
 
 func _ready():
-	load_song(songs[1], "", 0, 0)
-	queue[0].bpm = 120
-	queue[0].spb = 60.0 / 120
-	queue[0].songStartPos = 0.01
+	select_next_song()
 	play_next()
 	
 func play_next():
 	var s = super.play_next()
 	playNextAt = -1.0
+	super._on_song_beat(s)
 	return s
 
 func select_next_song():
-	# TODO: how do we select the song better
-	var s = load_song(songs[0], "")
+	if level >= songs.size():
+		return
+		
+	var s = load_song(songs[level])
+	level += 1
 	
 	for fx in s.fxs:
 		if fx.type == SongFX.EFFECT.FADE_IN:
