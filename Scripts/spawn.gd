@@ -16,6 +16,9 @@ func _ready():
 	
 func _on_beat(song: Song):
 	if not is_paused:
+		var barsBeats = song.get_bars_and_beats()
+		var over = barsBeats[1] - int(barsBeats[1])
+		var nextBeatAt = song._to_duration(1) - over
 		var spawned_node = node_scene.instantiate()
 		spawned_nodes.append(spawned_node)
 		add_child(spawned_node)
