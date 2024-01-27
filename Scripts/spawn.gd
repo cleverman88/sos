@@ -35,6 +35,7 @@ func _on_mic_stand_area_shape_entered(area_rid, area, area_shape_index, local_sh
 
 func missed(node):
 	get_tree().get_nodes_in_group("combo")[0].total_combo = 1
+	get_tree().get_nodes_in_group("life")[0].total_lives -= 1
 	print("MISSED")
 	
 func hit(node):

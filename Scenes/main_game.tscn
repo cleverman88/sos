@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://6170weclm800"]
+[gd_scene load_steps=8 format=3 uid="uid://6170weclm800"]
 
 [ext_resource type="PackedScene" uid="uid://c1ybkt20go022" path="res://Scenes/mic_stand.tscn" id="1_4eyq0"]
 [ext_resource type="Script" path="res://Scripts/audio/conductor.gd" id="3_7j3lf"]
+[ext_resource type="Script" path="res://Scripts/Lives.gd" id="3_be1sy"]
 [ext_resource type="Script" path="res://Scripts/spawn.gd" id="4_0fhsn"]
 [ext_resource type="Script" path="res://Scripts/Score.gd" id="4_7rvyk"]
 [ext_resource type="Script" path="res://Scripts/Combo.gd" id="5_k03vn"]
@@ -10,6 +11,28 @@
 radius = 8.0
 
 [node name="Game" type="Node2D"]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = 904.0
+offset_top = 48.0
+offset_right = 1040.0
+offset_bottom = 504.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Score" type="Label" parent="MarginContainer/VBoxContainer" groups=["score"]]
+texture_filter = 1
+layout_mode = 2
+script = ExtResource("4_7rvyk")
+
+[node name="Combo" type="Label" parent="MarginContainer/VBoxContainer" groups=["combo"]]
+layout_mode = 2
+script = ExtResource("5_k03vn")
+
+[node name="Lives" type="Label" parent="MarginContainer/VBoxContainer" groups=["life"]]
+layout_mode = 2
+script = ExtResource("3_be1sy")
 
 [node name="mic_stand" parent="." groups=["mic"] instance=ExtResource("1_4eyq0")]
 position = Vector2(680, 336)
@@ -26,21 +49,6 @@ position = Vector2(760, 256)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="missed"]
 shape = SubResource("CircleShape2D_mvsiy")
-
-[node name="Score" type="Label" parent="." groups=["score"]]
-texture_filter = 1
-offset_left = 1072.0
-offset_right = 1139.0
-offset_bottom = 23.0
-scale = Vector2(1.17641, 1.16043)
-script = ExtResource("4_7rvyk")
-
-[node name="Combo" type="Label" parent="." groups=["combo"]]
-offset_left = 1072.0
-offset_top = 40.0
-offset_right = 1152.0
-offset_bottom = 64.0
-script = ExtResource("5_k03vn")
 
 [connection signal="area_shape_entered" from="mic_stand" to="spawn" method="_on_mic_stand_area_shape_entered"]
 [connection signal="area_shape_exited" from="mic_stand" to="spawn" method="_on_mic_stand_area_shape_exited"]
