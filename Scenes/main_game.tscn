@@ -137,8 +137,8 @@ scale = Vector2(2.09333, 1.22)
 texture = ExtResource("2_wb45q")
 
 [node name="Optionsbackground" type="Sprite2D" parent="."]
-position = Vector2(340, 436)
-scale = Vector2(0.632812, 0.523438)
+position = Vector2(372, 420)
+scale = Vector2(0.835938, 0.632813)
 texture = ExtResource("8_lbuex")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -160,7 +160,7 @@ layout_mode = 2
 script = ExtResource("5_k03vn")
 
 [node name="spawn" type="Marker2D" parent="." groups=["spawn"]]
-position = Vector2(224, 480)
+position = Vector2(96, 337)
 script = ExtResource("4_0fhsn")
 
 [node name="hit_1" type="AudioStreamPlayer2D" parent="spawn"]
@@ -202,7 +202,7 @@ shape = SubResource("CircleShape2D_mvsiy")
 position = Vector2(376, 576)
 
 [node name="Lives" type="Node2D" parent="." groups=["life"]]
-position = Vector2(-464, 216)
+position = Vector2(-408, 184)
 script = ExtResource("3_be1sy")
 
 [node name="Medium" type="Sprite2D" parent="Lives"]
@@ -227,8 +227,8 @@ texture = ExtResource("6_cf3he")
 
 [node name="MediumBoom" type="Sprite2D" parent="Lives"]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(812, 228)
-scale = Vector2(2.34375, 1.65182)
+position = Vector2(792, 252)
+scale = Vector2(3.375, 2.23482)
 texture = ExtResource("9_ogq6v")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Lives/MediumBoom"]
@@ -243,8 +243,8 @@ stream = ExtResource("11_iwprb")
 
 [node name="BadBoom" type="Sprite2D" parent="Lives"]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(820, 228)
-scale = Vector2(2.29885, 1.53125)
+position = Vector2(780, 256)
+scale = Vector2(3.27969, 2.0625)
 texture = ExtResource("9_raivj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Lives/BadBoom"]
@@ -254,10 +254,10 @@ libraries = {
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_wllg1")
-offset_left = 40.0
-offset_top = 232.0
-offset_right = 648.0
-offset_bottom = 656.0
+offset_left = -16.0
+offset_top = 176.0
+offset_right = 760.0
+offset_bottom = 712.0
 color = Color(0.854902, 0.156863, 0.286275, 1)
 script = ExtResource("19_xs4la")
 
@@ -308,8 +308,8 @@ layout_mode = 2
 text = "Exit"
 
 [node name="Tv" type="Sprite2D" parent="."]
-position = Vector2(467.18, 425)
-scale = Vector2(0.917839, 0.79429)
+position = Vector2(536, 430)
+scale = Vector2(1.16865, 1.01092)
 texture = ExtResource("23_lsjqg")
 
 [connection signal="area_shape_entered" from="missed" to="spawn" method="_on_missed_area_shape_entered"]
