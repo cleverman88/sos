@@ -29,14 +29,15 @@ func _process(delta):
 		bad.visible = false
 		prev_lives = total_lives
 		boom.play()
+		shader.material.set_shader_parameter("static_noise_intensity", 0.4)
 		medium_animation.play("expload")
-
 		return
 	if total_lives == 2 and prev_lives != total_lives:
 		good.visible = false
 		medium.visible = false
 		bad.visible = true
 		prev_lives = total_lives
+		shader.material.set_shader_parameter("static_noise_intensity", 0.8)
 		boom.play()
 		bad_animation.play("expload")
 		return

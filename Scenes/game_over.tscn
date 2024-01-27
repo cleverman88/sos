@@ -1,20 +1,35 @@
 [gd_scene load_steps=5 format=3 uid="uid://cv7g3r6024ps8"]
 
 [ext_resource type="Script" path="res://GameOver.gd" id="1_3cp1k"]
+[ext_resource type="Shader" path="res://Shaders/main_game.gdshader" id="1_7ba8w"]
+[ext_resource type="Texture2D" uid="uid://bsy22gh7a46i2" path="res://Assets/gameover.png" id="2_efc3h"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ju3of"]
-bg_color = Color(0.45098, 0.533333, 0.721569, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="SystemFont" id="SystemFont_m4xfo"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_uqtg8"]
-font = SubResource("SystemFont_m4xfo")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fyg4a"]
+shader = ExtResource("1_7ba8w")
+shader_parameter/overlay = false
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
 
 [node name="GameOver" type="Control"]
+use_parent_material = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,49 +38,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3cp1k")
 
+[node name="Gameover" type="Sprite2D" parent="."]
+position = Vector2(574.563, 323.438)
+scale = Vector2(0.234269, 0.216122)
+texture = ExtResource("2_efc3h")
+
 [node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -155.0
-offset_top = -319.0
-offset_right = -115.0
-offset_bottom = -279.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(7.93038, 16.1963)
-color = Color(0.635294, 0.435294, 0.607843, 1)
-
-[node name="Panel" type="Panel" parent="."]
+material = SubResource("ShaderMaterial_fyg4a")
 layout_mode = 0
-offset_left = 462.0
-offset_top = 174.0
-offset_right = 502.0
-offset_bottom = 214.0
-scale = Vector2(5.87315, 7.75409)
-theme_override_styles/panel = SubResource("StyleBoxFlat_ju3of")
-
-[node name="GameOver" type="Label" parent="Panel"]
-layout_mode = 0
-offset_left = 9.19438
-offset_top = -0.773786
-offset_right = 96.1944
-offset_bottom = 22.2262
-scale = Vector2(0.253631, 0.310503)
-text = "Game Over"
-label_settings = SubResource("LabelSettings_uqtg8")
-
-[node name="Score" type="Label" parent="Panel"]
-layout_mode = 0
-offset_left = 11.2376
-offset_top = 6.57717
-offset_right = 54.2376
-offset_bottom = 29.5772
-scale = Vector2(0.402304, 0.261789)
-text = "Score"
+offset_top = -1.0
+offset_right = 1150.0
+offset_bottom = 644.0
+color = Color(0, 0, 0, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -74,10 +58,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -32.5
-offset_top = -20.0
-offset_right = 32.5
-offset_bottom = 20.0
+offset_left = 404.0
+offset_top = 183.0
+offset_right = 469.0
+offset_bottom = 249.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -94,5 +78,6 @@ text = "Restart"
 layout_mode = 2
 text = "Menu"
 
+[connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Menu" to="." method="_on_menu_pressed"]

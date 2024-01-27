@@ -14,5 +14,9 @@
 	"res://Assets/tracks/menu/GGJ24_Title_Screen_Track.wav": {
 		"start": 0.113,
 		"bpm": 120
+	},
+	"res://Assets/gameover.wav": {
+		"start": 5,
+		"bpm": 120
 	}
 }

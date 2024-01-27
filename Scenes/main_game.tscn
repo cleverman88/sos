@@ -243,8 +243,8 @@ stream = ExtResource("11_iwprb")
 
 [node name="BadBoom" type="Sprite2D" parent="Lives"]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(780, 256)
-scale = Vector2(3.27969, 2.0625)
+position = Vector2(766, 243.5)
+scale = Vector2(3.38697, 2.16016)
 texture = ExtResource("9_raivj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Lives/BadBoom"]
