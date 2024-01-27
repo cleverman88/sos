@@ -1,16 +1,47 @@
-[gd_scene load_steps=8 format=3 uid="uid://6170weclm800"]
+[gd_scene load_steps=11 format=3 uid="uid://6170weclm800"]
 
 [ext_resource type="PackedScene" uid="uid://c1ybkt20go022" path="res://Scenes/mic_stand.tscn" id="1_4eyq0"]
+[ext_resource type="Shader" path="res://Shaders/main_game.gdshader" id="1_g5o4w"]
+[ext_resource type="Texture2D" uid="uid://c131nuiw1p1xg" path="res://Assets/optionsbackground.jpg" id="1_ta7f4"]
 [ext_resource type="Script" path="res://Scripts/audio/conductor.gd" id="3_7j3lf"]
 [ext_resource type="Script" path="res://Scripts/Lives.gd" id="3_be1sy"]
 [ext_resource type="Script" path="res://Scripts/spawn.gd" id="4_0fhsn"]
 [ext_resource type="Script" path="res://Scripts/Score.gd" id="4_7rvyk"]
 [ext_resource type="Script" path="res://Scripts/Combo.gd" id="5_k03vn"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qfja3"]
+shader = ExtResource("1_g5o4w")
+shader_parameter/overlay = false
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_mvsiy"]
 radius = 8.0
 
 [node name="Game" type="Node2D"]
+
+[node name="Optionsbackground" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_qfja3")
+position = Vector2(520, 352)
+texture = ExtResource("1_ta7f4")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_left = 904.0
