@@ -20,6 +20,8 @@ func _on_beat(barsAndBeat: Vector2):
 		spawned_nodes.append(spawned_node)
 		add_child(spawned_node)
 		spawned_node.global_position = position
+		var a = spawned_node.get_node("AnimationPlayer")
+		a.play("note_move")
 
 func _input(event):
 	if event.is_action_pressed("ui_right"):  # Check if the right arrow key was pressed
