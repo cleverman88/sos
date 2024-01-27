@@ -27,7 +27,7 @@ func _input(event):
 			if INSIDE:
 				INSIDE = false
 				hit(spawned_nodes[-1])
-			else:
+			else:#
 				missed(spawned_nodes[-1])
 			spawned_nodes.pop_front().queue_free()  # Remove the spawned node
 	if event.is_action_pressed("pause"):
@@ -42,12 +42,17 @@ func _on_mic_stand_area_shape_entered(area_rid, area, area_shape_index, local_sh
 func missed(node):
 	get_tree().get_nodes_in_group("combo")[0].total_combo = 1
 	get_tree().get_nodes_in_group("life")[0].total_lives -= 1
-	print("MISSED")
+	var track = get_node('miss')
+	track.play()
+	
 	
 func hit(node):
 	get_tree().get_nodes_in_group("combo")[0].total_combo *= 2
 	get_tree().get_nodes_in_group("score")[0].total_score += (get_tree().get_nodes_in_group("combo")[0].total_combo *  19)
 	print("HIT")
+	var rng = RandomNumberGenerator.new()
+	var track = get_node('hit_'+str(rng.randi_range(0,3)))
+	track.play()
 
 
 

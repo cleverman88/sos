@@ -1,6 +1,6 @@
 extends Node2D
 
-var total_lives = 5
+var total_lives = 10
 var prev_lives = total_lives
 
 @onready var good = $Good
@@ -16,7 +16,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if total_lives >= 4:
+	if total_lives >= 7:
 		good.visible = true
 		medium.visible = false
 		bad.visible = false
@@ -25,7 +25,7 @@ func _process(delta):
 			boom.play()
 			medium_animation.play("expload")
 		return
-	if total_lives >= 2:
+	if total_lives >= 4:
 		if total_lives != prev_lives:
 			prev_lives = total_lives
 			boom.play()
