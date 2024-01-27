@@ -1,20 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://cw4ck8mp87fnt"]
+[gd_scene load_steps=4 format=3 uid="uid://6170weclm800"]
 
 [ext_resource type="PackedScene" uid="uid://c1ybkt20go022" path="res://Scenes/mic_stand.tscn" id="1_4eyq0"]
+[ext_resource type="Script" path="res://Scripts/audio/conductor.gd" id="3_7j3lf"]
 [ext_resource type="Script" path="res://Scripts/spawn.gd" id="4_0fhsn"]
 
 [node name="Game" type="Node2D"]
 
-[node name="mic_stand" parent="." instance=ExtResource("1_4eyq0")]
+[node name="mic_stand" parent="." groups=["mic"] instance=ExtResource("1_4eyq0")]
 position = Vector2(680, 336)
 
-[node name="spawn" type="Marker2D" parent="."]
+[node name="spawn" type="Marker2D" parent="." groups=["spawn"]]
 position = Vector2(128, 256)
 script = ExtResource("4_0fhsn")
 
-[node name="SpawnTimer" type="Timer" parent="spawn"]
+[node name="conductor" type="Node" parent="."]
+script = ExtResource("3_7j3lf")
 
 [connection signal="area_shape_entered" from="mic_stand" to="spawn" method="_on_mic_stand_area_shape_entered"]
 [connection signal="area_shape_exited" from="mic_stand" to="spawn" method="_on_mic_stand_area_shape_exited"]
 [connection signal="body_entered" from="mic_stand" to="mic_stand" method="_on_body_entered"]
-[connection signal="timeout" from="spawn/SpawnTimer" to="spawn" method="_on_spawn_timer_timeout"]
