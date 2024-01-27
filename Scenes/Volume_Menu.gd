@@ -2,11 +2,12 @@ extends Control
 
 var master_bus = AudioServer.get_bus_index("Master")
 @export var Playing = false
+var audio_stream2d: AudioStreamPlayer2D
 
-var audio_stream2d = get_tree().get_nodes_in_group("audio")[0]
 
 func _ready():
 	AudioServer.set_bus_volume_db(master_bus, 0)
+	audio_stream2d = $AudioStreamPlayer2D
 	audio_stream2d.stop()
 
 func _on_h_slider_value_changed(value):

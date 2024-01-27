@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bwxlwiioyr2dh"]
 
-[ext_resource type="Script" path="res://Options_menu.gd" id="1_vvrlx"]
+[ext_resource type="Script" path="res://Scripts/Options_menu.gd" id="1_vvrlx"]
 [ext_resource type="AudioStream" uid="uid://cg5s3040b7o0m" path="res://Assets/Basic_Ah_Beat_120BPM.wav" id="2_6sqlv"]
 
 [node name="Menu" type="Control"]
@@ -49,6 +49,7 @@ script = ExtResource("1_vvrlx")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_6sqlv")
+autoplay = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Volume" to="MarginContainer/VBoxContainer/Back" method="_on_volume_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="MarginContainer/VBoxContainer/Back" method="_on_pressed"]

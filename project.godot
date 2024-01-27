@@ -15,15 +15,16 @@ run/main_scene="res://Scenes/menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Hack="*res://Scripts/HACK.gd"
+
 [file_customization]
 
 folder_colors={
 "res://Assets/audio/": "red",
 "res://Scripts/audio/": "red"
 }
-[autoload]
-
-Hack="*res://Scripts/HACK.gd"
 
 [rendering]
 

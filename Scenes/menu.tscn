@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://pdxjo0p8pxk0"]
 
-[ext_resource type="Script" path="res://Menu.gd" id="1_pu4h4"]
+[ext_resource type="Script" path="res://Scripts/Menu.gd" id="1_pu4h4"]
 [ext_resource type="AudioStream" uid="uid://cg5s3040b7o0m" path="res://Assets/Basic_Ah_Beat_120BPM.wav" id="2_fuvj0"]
 
 [node name="Menu" type="Control"]
