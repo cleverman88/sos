@@ -1,20 +1,21 @@
 [gd_scene load_steps=4 format=3 uid="uid://c1ybkt20go022"]
 
 [ext_resource type="Script" path="res://Scripts/mic_stand.gd" id="1_lqaiu"]
-[ext_resource type="Texture2D" uid="uid://jdkf3qvghka6" path="res://Assets/placeholder_mic.png" id="2_vcmgl"]
+[ext_resource type="Texture2D" uid="uid://ctfju8pj2aswq" path="res://Assets/miccc.webp" id="2_a8d22"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hfkob"]
-size = Vector2(26, 26)
+size = Vector2(38, 34)
 
 [node name="mic_stand" type="Area2D"]
 script = ExtResource("1_lqaiu")
 
 [node name="PlaceholderMic" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_vcmgl")
+position = Vector2(20.5937, -28)
+scale = Vector2(0.237843, 0.253333)
+texture = ExtResource("2_a8d22")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(27.5, -77.5)
+position = Vector2(48, -88)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_hfkob")
 
