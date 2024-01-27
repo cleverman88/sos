@@ -8,4 +8,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	text = str(total_combo)+"X Combo"
+	#text = str(total_combo)+"X Combo"
+	pass
