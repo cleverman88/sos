@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://6170weclm800"]
+[gd_scene load_steps=18 format=3 uid="uid://6170weclm800"]
 
 [ext_resource type="PackedScene" uid="uid://c1ybkt20go022" path="res://Scenes/mic_stand.tscn" id="1_4eyq0"]
 [ext_resource type="Shader" path="res://Shaders/main_game.gdshader" id="1_g5o4w"]
@@ -8,6 +8,49 @@
 [ext_resource type="Script" path="res://Scripts/spawn.gd" id="4_0fhsn"]
 [ext_resource type="Script" path="res://Scripts/Score.gd" id="4_7rvyk"]
 [ext_resource type="Script" path="res://Scripts/Combo.gd" id="5_k03vn"]
+[ext_resource type="Texture2D" uid="uid://dypjymc8xribu" path="res://Assets/placeholder_medium.png" id="9_ogq6v"]
+[ext_resource type="Texture2D" uid="uid://bea4pe01jqkpa" path="res://Assets/placeholder_good.png" id="9_prg7n"]
+[ext_resource type="Texture2D" uid="uid://joroix5f65a7" path="res://Assets/placeholder_skitzo.png" id="9_raivj"]
+[ext_resource type="AudioStream" uid="uid://ttsvxl35i1cy" path="res://Assets/boom.wav" id="11_iwprb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mvsiy"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_q13li"]
+resource_name = "expload"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cojei"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dg6fo"]
+_data = {
+"RESET": SubResource("Animation_cojei"),
+"expload": SubResource("Animation_q13li")
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wllg1"]
 shader = ExtResource("1_g5o4w")
@@ -22,7 +65,7 @@ shader_parameter/roll_speed = 8.0
 shader_parameter/roll_size = 15.0
 shader_parameter/roll_variation = 1.8
 shader_parameter/distort_intensity = 0.05
-shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_opacity = 0.199
 shader_parameter/noise_speed = 5.0
 shader_parameter/static_noise_intensity = 0.06
 shader_parameter/aberration = 0.03
@@ -33,23 +76,12 @@ shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_mvsiy"]
-radius = 8.0
-
 [node name="Game" type="Node2D"]
 
 [node name="Optionsbackground" type="Sprite2D" parent="."]
-position = Vector2(576, 336)
-scale = Vector2(1.73802, 1.62133)
+position = Vector2(576, 324)
+scale = Vector2(1.84026, 1.728)
 texture = ExtResource("1_ta7f4")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_wllg1")
-offset_left = 24.0
-offset_top = 24.0
-offset_right = 1136.0
-offset_bottom = 632.0
-color = Color(0.854902, 0.156863, 0.286275, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_left = 904.0
@@ -69,10 +101,6 @@ script = ExtResource("4_7rvyk")
 layout_mode = 2
 script = ExtResource("5_k03vn")
 
-[node name="Lives" type="Label" parent="MarginContainer/VBoxContainer" groups=["life"]]
-layout_mode = 2
-script = ExtResource("3_be1sy")
-
 [node name="mic_stand" parent="." groups=["mic"] instance=ExtResource("1_4eyq0")]
 position = Vector2(680, 336)
 
@@ -88,6 +116,57 @@ position = Vector2(760, 256)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="missed"]
 shape = SubResource("CircleShape2D_mvsiy")
+
+[node name="Lives" type="Node2D" parent="." groups=["life"]]
+script = ExtResource("3_be1sy")
+
+[node name="Medium" type="Sprite2D" parent="Lives"]
+position = Vector2(992, 132)
+scale = Vector2(0.5, 0.550607)
+texture = ExtResource("9_ogq6v")
+
+[node name="Bad" type="Sprite2D" parent="Lives"]
+position = Vector2(993.25, 132)
+scale = Vector2(0.5, 0.53125)
+texture = ExtResource("9_raivj")
+
+[node name="Good" type="Sprite2D" parent="Lives"]
+position = Vector2(992, 136)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_prg7n")
+
+[node name="MediumBoom" type="Sprite2D" parent="Lives"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(578, 324)
+scale = Vector2(4.76563, 2.94737)
+texture = ExtResource("9_ogq6v")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Lives/MediumBoom"]
+libraries = {
+"": SubResource("AnimationLibrary_dg6fo")
+}
+
+[node name="boom" type="AudioStreamPlayer2D" parent="Lives"]
+position = Vector2(992, 132)
+scale = Vector2(0.5, 0.550607)
+stream = ExtResource("11_iwprb")
+
+[node name="BadBoom" type="Sprite2D" parent="Lives"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(578, 324)
+scale = Vector2(4.76563, 2.94737)
+texture = ExtResource("9_raivj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Lives/BadBoom"]
+libraries = {
+"": SubResource("AnimationLibrary_dg6fo")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_wllg1")
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.854902, 0.156863, 0.286275, 1)
 
 [connection signal="area_shape_entered" from="mic_stand" to="spawn" method="_on_mic_stand_area_shape_entered"]
 [connection signal="area_shape_exited" from="mic_stand" to="spawn" method="_on_mic_stand_area_shape_exited"]
