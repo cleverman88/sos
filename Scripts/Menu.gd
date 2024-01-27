@@ -2,6 +2,9 @@ extends Control
 
 var music: MusicPlayer
 
+func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 func _on_play_pressed():
 	get_tree().change_scene_to_file("res://Scenes/main_game.tscn")
 

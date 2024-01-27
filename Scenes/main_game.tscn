@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://6170weclm800"]
+[gd_scene load_steps=25 format=3 uid="uid://6170weclm800"]
 
 [ext_resource type="Script" path="res://Scripts/main_game_pause.gd" id="1_2colx"]
 [ext_resource type="PackedScene" uid="uid://c1ybkt20go022" path="res://Scenes/mic_stand.tscn" id="1_4eyq0"]
@@ -266,13 +266,17 @@ offset_bottom = 40.0
 [node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/MarginContainer"]
 layout_mode = 2
 
-[node name="Resume" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
+[node name="Restart" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Resume"
+text = "Restart"
 
 [node name="Options" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Options"
+
+[node name="Menu" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Menu"
 
 [node name="Exit" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -282,6 +286,7 @@ text = "Exit"
 [connection signal="area_shape_exited" from="mic_stand" to="spawn" method="_on_mic_stand_area_shape_exited"]
 [connection signal="body_entered" from="mic_stand" to="mic_stand" method="_on_body_entered"]
 [connection signal="area_shape_entered" from="missed" to="spawn" method="_on_missed_area_shape_entered"]
-[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Resume" to="PauseMenu" method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Restart" to="PauseMenu" method="_on_restart_pressed"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Options" to="PauseMenu" method="_on_options_pressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Menu" to="PauseMenu" method="_on_menu_pressed"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Exit" to="PauseMenu" method="_on_exit_pressed"]
