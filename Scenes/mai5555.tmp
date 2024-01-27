@@ -20,7 +20,7 @@ script = ExtResource("4_0fhsn")
 script = ExtResource("3_7j3lf")
 
 [node name="missed" type="Area2D" parent="." groups=["missed"]]
-position = Vector2(760, 256)
+position = Vector2(728, 256)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="missed"]
 shape = SubResource("CircleShape2D_mvsiy")
