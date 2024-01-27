@@ -1,56 +1,54 @@
-extends Node
+extends MusicPlayer
 class_name Conductor
 
-signal beat # (bpm: float, [bars, beat]: Vector2, remaining_time: float)
-
-var playing = [] # the current songs we are playing
-var queue = []   # the songs we want to play next
-
-const songs = [
-	"res://Assets/audio/audio/GGJ24_Track_1_Demo_110_BPM_C_Minor.wav",
-	"res://Assets/audio/audio/Basic_Ah_Beat_120BPM.wav",
-	"res://Assets/audio/audio/gamer_tunes.wav"
-]
 
 var rng = RandomNumberGenerator.new()
+const songs = [
+	"res://Assets/audio/audio/game/GGJ24_Track_1_Demo_110_BPM_C_Minor.wav",
+	"res://Assets/audio/audio/game/Basic_Ah_Beat_120BPM.wav",
+]
+var playNextAt: float # when to play the next song
+
 
 func _ready():
 	load_song(songs[1], "", 0, 0)
+	queue[0].bpm = 120
+	queue[0].spb = 60.0 / 120
 	play_next()
 	
-func load_song(song_path: String, data_path, fade_in_override = -1, fade_out_override = -1):
-	var s = Song.new(song_path, data_path, fade_in_override, fade_out_override)
-	s.song_beat.connect(_on_song_beat)
-	s.song_stop.connect(_on_song_end)
-	add_child(s.player)
-	queue.append(s)
-	
 func play_next():
-	var s = queue.pop_front()
-	s.play()
-	playing.append(s) 
+	var s = super.play_next()
+	playNextAt = -1.0
+	return s
+
+func select_next_song():
+	# TODO: how do we select the song better
+	var s = load_song(songs[rng.randi_range(0, songs.size() - 1)], "")
 	
-func _process(delta):
-	for song in playing:
-		song._process(delta)
-		
-	# TODO: sync the BPM during track changeover
+	for fx in s.fxs:
+		if fx.type == SongFX.EFFECT.FADE_IN:
+			# use fade in duration to change the tempos of both tracks
+			s.create_fx(SongFX.new(s, SongFX.EFFECT.BPM_CHANGE, s.songStartPos, fx.durationBeats, Vector2(playing[0].bpm, 0)))
+			
+			playNextAt = playing[0].songEndPos - playing[0]._to_duration(fx.durationBeats)
+			s.create_fx(SongFX.new(s, SongFX.EFFECT.BPM_CHANGE, playNextAt, fx.durationBeats, Vector2(0, s.bpm)))
 
-func _on_song_beat(bpm: float, barsAndBeat: Vector2, remaining_time: float):
-	print("bpm: ", bpm, ", bar: ", barsAndBeat[0], ", beat: ", barsAndBeat[1], ", remaining: ", remaining_time)
-	beat.emit(bpm, barsAndBeat, remaining_time)
-	if playing.size() < 2 and remaining_time < 20:
-		if queue.size() == 0:
-			# TODO: queue next song better
-			load_song(songs[rng.randi_range(0, songs.size() - 1)], "")
-		elif remaining_time <= queue[0].fadeInDuration:
-			# play the new song we have queued
-			play_next()
-			playing[0].song_beat.disconnect(_on_song_beat)
+func _on_song_beat(song: Song):
+	super._on_song_beat(song)
+	
+	var barBeat = song.get_bars_and_beats()
+	print("bpm: ", song.get_current_bpm(), ", bar: ", barBeat[0], ", beat: ", barBeat[1], ", remaining (s): ", song.get_remaining(), "=", song.get_remaining_beats(), "beats")
+	beat.emit(song)
+	
+	if playNextAt > 0 and song.songPos > playNextAt:
+		var s = play_next()
+		var overBeat = barBeat[1] - int(barBeat[1])
+		s.player.seek(s.player.get_playback_position() - s._to_duration(overBeat))
+	
+	if playing.size() < 2 and queue.size() == 0:
+		select_next_song()
 
-func _on_song_end(source: String):
-	for i in range(playing.size()):
-		if playing[i].source == source and not playing[i].started:
-			remove_child(playing[i].player)
-			playing.remove_at(i)
-			break
+func _on_song_stop(song: Song):
+	super._on_song_stop(song)
+	if playing.length() == 0:
+		play_next() # incase there is no transition, play the next track
