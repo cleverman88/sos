@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://6170weclm800"]
+[gd_scene load_steps=3 format=3 uid="uid://cw4ck8mp87fnt"]
 
 [ext_resource type="PackedScene" uid="uid://c1ybkt20go022" path="res://Scenes/mic_stand.tscn" id="1_4eyq0"]
 [ext_resource type="Script" path="res://Scripts/spawn.gd" id="4_0fhsn"]
