@@ -9,6 +9,8 @@ var prev_lives = total_lives
 @onready var bad_animation = $BadBoom/AnimationPlayer
 @onready var bad = $Bad
 @onready var boom = $boom
+@onready var shader = $"../ColorRect"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -28,6 +30,7 @@ func _process(delta):
 		prev_lives = total_lives
 		boom.play()
 		medium_animation.play("expload")
+
 		return
 	if total_lives == 2 and prev_lives != total_lives:
 		good.visible = false
