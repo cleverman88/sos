@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://6170weclm800"]
+[gd_scene load_steps=23 format=3 uid="uid://6170weclm800"]
 
 [ext_resource type="PackedScene" uid="uid://c1ybkt20go022" path="res://Scenes/mic_stand.tscn" id="1_4eyq0"]
 [ext_resource type="Shader" path="res://Shaders/main_game.gdshader" id="1_g5o4w"]
@@ -8,9 +8,14 @@
 [ext_resource type="Script" path="res://Scripts/spawn.gd" id="4_0fhsn"]
 [ext_resource type="Script" path="res://Scripts/Score.gd" id="4_7rvyk"]
 [ext_resource type="Script" path="res://Scripts/Combo.gd" id="5_k03vn"]
+[ext_resource type="AudioStream" uid="uid://wbvmcowhebjm" path="res://Assets/hit_1.wav" id="6_w1riw"]
+[ext_resource type="AudioStream" uid="uid://cxnkp10dg7mi3" path="res://Assets/hit_2.wav" id="7_i3lxx"]
+[ext_resource type="AudioStream" uid="uid://w4p75rdvik08" path="res://Assets/hit_3.wav" id="8_w1sem"]
+[ext_resource type="AudioStream" uid="uid://c35s77xja7rk3" path="res://Assets/hit_0.wav" id="9_kxsn0"]
 [ext_resource type="Texture2D" uid="uid://dypjymc8xribu" path="res://Assets/placeholder_medium.png" id="9_ogq6v"]
 [ext_resource type="Texture2D" uid="uid://bea4pe01jqkpa" path="res://Assets/placeholder_good.png" id="9_prg7n"]
 [ext_resource type="Texture2D" uid="uid://joroix5f65a7" path="res://Assets/placeholder_skitzo.png" id="9_raivj"]
+[ext_resource type="AudioStream" uid="uid://c4fr7ivapuxmd" path="res://Assets/miss.wav" id="10_nawh6"]
 [ext_resource type="AudioStream" uid="uid://ttsvxl35i1cy" path="res://Assets/boom.wav" id="11_iwprb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mvsiy"]
@@ -107,6 +112,26 @@ position = Vector2(680, 336)
 [node name="spawn" type="Marker2D" parent="." groups=["spawn"]]
 position = Vector2(128, 256)
 script = ExtResource("4_0fhsn")
+
+[node name="hit_1" type="AudioStreamPlayer2D" parent="spawn"]
+position = Vector2(-128, -256)
+stream = ExtResource("6_w1riw")
+
+[node name="hit_2" type="AudioStreamPlayer2D" parent="spawn"]
+position = Vector2(-256, -512)
+stream = ExtResource("7_i3lxx")
+
+[node name="hit_3" type="AudioStreamPlayer2D" parent="spawn"]
+position = Vector2(-384, -768)
+stream = ExtResource("8_w1sem")
+
+[node name="hit_0" type="AudioStreamPlayer2D" parent="spawn"]
+position = Vector2(-512, -1024)
+stream = ExtResource("9_kxsn0")
+
+[node name="miss" type="AudioStreamPlayer2D" parent="spawn"]
+position = Vector2(-256, -512)
+stream = ExtResource("10_nawh6")
 
 [node name="conductor" type="Node" parent="."]
 script = ExtResource("3_7j3lf")
