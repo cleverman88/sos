@@ -29,7 +29,7 @@ shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
 
-[node name="Menu" type="Control"]
+[node name="Menu2" type="Control"]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5

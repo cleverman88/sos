@@ -23,10 +23,6 @@ config/icon="res://icon.svg"
 
 Hack="*res://Scripts/HACK.gd"
 
-[autoload]
-
-Hack="*res://Scripts/HACK.gd"
-
 [file_customization]
 
 folder_colors={

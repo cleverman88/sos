@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://cv7g3r6024ps8"]
+[gd_scene load_steps=5 format=3 uid="uid://cv7g3r6024ps8"]
 
 [ext_resource type="Script" path="res://GameOver.gd" id="1_3cp1k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ju3of"]
+bg_color = Color(0.45098, 0.533333, 0.721569, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="SystemFont" id="SystemFont_m4xfo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uqtg8"]
+font = SubResource("SystemFont_m4xfo")
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -11,9 +23,76 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3cp1k")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -155.0
+offset_top = -319.0
+offset_right = -115.0
+offset_bottom = -279.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(7.93038, 16.1963)
+color = Color(0.635294, 0.435294, 0.607843, 1)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 462.0
+offset_top = 174.0
+offset_right = 502.0
+offset_bottom = 214.0
+scale = Vector2(5.87315, 7.75409)
+theme_override_styles/panel = SubResource("StyleBoxFlat_ju3of")
+
+[node name="GameOver" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 9.19438
+offset_top = -0.773786
+offset_right = 96.1944
+offset_bottom = 22.2262
+scale = Vector2(0.253631, 0.310503)
+text = "Game Over"
+label_settings = SubResource("LabelSettings_uqtg8")
+
+[node name="Score" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 11.2376
+offset_top = 6.57717
+offset_right = 54.2376
+offset_bottom = 29.5772
+scale = Vector2(0.402304, 0.261789)
+text = "Score"
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 2
-offset_right = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.5
+offset_top = -20.0
+offset_right = 32.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+
+[node name="Restart" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Restart"
+
+[node name="Menu" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Menu"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Menu" to="." method="_on_menu_pressed"]
