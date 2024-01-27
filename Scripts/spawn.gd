@@ -12,7 +12,7 @@ var INSIDE = false
 func _ready():
 	conductor.beat.connect(_on_beat)
 	
-func _on_beat(barsAndBeat: Vector2):
+func _on_beat(bpm: float, barsAndBeat: Vector2, remaining_time: float):
 	var spawned_node = node_scene.instantiate()
 	spawned_nodes.append(spawned_node)
 	add_child(spawned_node)

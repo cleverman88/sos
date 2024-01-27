@@ -5,11 +5,11 @@ class_name Song
 # TODO: create and load data from a file
 
 # track control signals
-signal song_start
-signal song_stop
+signal song_start # (started_time: Float)
+signal song_stop  # (source: String)
 
 # gameplay sync signals
-signal song_beat
+signal song_beat # (bpm: float, [bars, beat]: Vector2, remaining_time: float)
 
 const MIN_VOL = -35.0
 const MAX_VOL = 0
@@ -36,7 +36,7 @@ var songPosBeats: float
 
 var lastBeatPos: float
 
-func _init(song_path: String, data_path: String, fade_in_override = -1):
+func _init(song_path: String, data_path: String, fade_in_override = -1, fade_out_override = -1):
 	if not FileAccess.file_exists(song_path):
 		push_error("could not find audio file: " + song_path)
 		return
@@ -49,10 +49,11 @@ func _init(song_path: String, data_path: String, fade_in_override = -1):
 	player.bus = "master"
 	player.stream = load(song_path)
 	player.volume_db = MIN_VOL
+	player.finished.connect(stop)
 	
 	_load_metadata(data_path, fade_in_override)
 	
-func _load_metadata(data_path: String, fade_in_override = -1):
+func _load_metadata(data_path: String, fade_in_override = -1, fade_out_override = -1):
 	# TODO: load bpm, start time, fade data from data_path
 	bpm = 110.0
 	spb = 60.0 / bpm
@@ -60,12 +61,12 @@ func _load_metadata(data_path: String, fade_in_override = -1):
 	startPos = 0.271 # TODO: not EXACTLY right, mr audio guy needs to sort this for me 
 	fadeOutPos = -1
 	if fadeOutPos == -1:
-		fadeOutPos = player.stream.get_length()
+		fadeOutPos = player.stream.get_length() - startPos
 	 
 	var fadeInBeats	= 16
 	var fadeOutBeats = 0
 	fadeInDuration = (fade_in_override if fade_in_override >= 0 else fadeInBeats) * spb
-	fadeOutDuration = fadeOutBeats * spb
+	fadeOutDuration = (fade_out_override if fade_out_override >= 0 else fadeOutBeats) * spb
 
 func play():
 	startedTime = Time.get_unix_time_from_system()
@@ -96,7 +97,7 @@ func _process(delta):
 		# manage fade in / out of music
 		if songPos < fadeInDuration:
 			player.volume_db = MIN_VOL + (MAX_VOL - MIN_VOL) * (songPos / fadeInDuration)
-		elif songPos > fadeOutPos + fadeOutPos:
+		elif songPos >= fadeOutPos + fadeOutDuration:
 			stop()
 		elif songPos > fadeOutPos:
 			player.volume_db = MAX_VOL - (MAX_VOL - MIN_VOL) * ((songPos - fadeOutPos) / fadeInDuration)
@@ -105,5 +106,5 @@ func _process(delta):
 		
 		# emit beat signal
 		if songPos > lastBeatPos + spb:
-			song_beat.emit(get_bars_and_beats())
+			song_beat.emit(player.pitch_scale * bpm, get_bars_and_beats(), fadeOutPos + fadeOutDuration - songPos)
 			lastBeatPos += spb

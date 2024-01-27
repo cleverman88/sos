@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://0wc247682jc2"
-path="res://.godot/imported/gamer_tunes.wav-71ca3903e6a77bd1086b9c69c9ea2094.sample"
+path="res://.godot/imported/gamer_tunes.wav-b00caee8799a1a431b05028e4bb6d761.sample"
 
 [deps]
 
-source_file="res://Assets/gamer_tunes.wav"
-dest_files=["res://.godot/imported/gamer_tunes.wav-71ca3903e6a77bd1086b9c69c9ea2094.sample"]
+source_file="res://Assets/audio/audio/gamer_tunes.wav"
+dest_files=["res://.godot/imported/gamer_tunes.wav-b00caee8799a1a431b05028e4bb6d761.sample"]
 
 [params]
 
