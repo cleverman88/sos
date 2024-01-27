@@ -11,21 +11,31 @@ var spawned_nodes = []
 var INSIDE = false
 var is_paused = false 
 
+const  minPathDuration = 0.2
 var pathDuration = 0.5
 
 func _ready():
+	pathDuration = 0.5
 	conductor.beat.connect(_on_beat)
+	
+func get_path_duration(speed_up = true):
+	var d = pathDuration
+	if speed_up:
+		pathDuration = max(pathDuration - 0.001, minPathDuration)
+	return d
 	
 func _on_beat(song: Song):
 	if not is_paused:
 		var nextBeatIn = song.get_duration_next_beat()
-		var t = get_tree().create_timer(nextBeatIn - pathDuration)
+		var animationDuration = get_path_duration()
+		var t = get_tree().create_timer(nextBeatIn - animationDuration)
 		t.timeout.connect(func ():
 			var spawned_node = note_asset.instantiate()
 			spawned_nodes.append(spawned_node)
 			add_child(spawned_node)
 			spawned_node.global_position = position
 			var a = spawned_node.get_node("AnimationPlayer")
+			a.speed_scale = 0.5 / animationDuration
 			a.play("note_move")
 		)
 
