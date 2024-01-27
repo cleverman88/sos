@@ -10,4 +10,5 @@ func _ready():
 
 func _process(delta):
 	# Update position based on velocity and delta
-	position += velocity * delta
+	#position += velocity * delta
+	pass
