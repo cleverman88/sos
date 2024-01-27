@@ -1,4 +1,21 @@
-[gd_scene format=3 uid="uid://djmu65tjjb5pq"]
+[gd_scene load_steps=2 format=3 uid="uid://djmu65tjjb5pq"]
+
+[sub_resource type="GDScript" id="GDScript_x3uq3"]
+script/source = "extends Control
+
+@onready var main = $\"../../\"
+
+func _on_resume_pressed():
+	main.pauseMenu()
+
+
+func _on_options_pressed():
+	get_tree().change_scene_to_file(\"res://Scenes/options_menu.tscn\")
+
+
+func _on_exit_pressed():
+	pass # Replace with function body.
+"
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -10,6 +27,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+script = SubResource("GDScript_x3uq3")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -32,3 +50,7 @@ text = "Options"
 [node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Exit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

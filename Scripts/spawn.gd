@@ -2,21 +2,24 @@ extends Marker2D
 
 var node_scene = preload("res://Scenes/note.tscn")
 
+
+
 @onready var conductor = $"../conductor"
 
 
 var spawned_nodes = [] 
 var INSIDE = false
-	
+var is_paused = false 
 
 func _ready():
 	conductor.beat.connect(_on_beat)
 	
 func _on_beat(barsAndBeat: Vector2):
-	var spawned_node = node_scene.instantiate()
-	spawned_nodes.append(spawned_node)
-	add_child(spawned_node)
-	spawned_node.global_position = position
+	if not is_paused:
+		var spawned_node = node_scene.instantiate()
+		spawned_nodes.append(spawned_node)
+		add_child(spawned_node)
+		spawned_node.global_position = position
 
 func _input(event):
 	if event.is_action_pressed("ui_right"):  # Check if the right arrow key was pressed
@@ -27,6 +30,9 @@ func _input(event):
 			else:
 				missed(spawned_nodes[-1])
 			spawned_nodes.pop_front().queue_free()  # Remove the spawned node
+	if event.is_action_pressed("pause"):
+		print("CALLED")
+		toggle_pause()
 
 
 func _on_mic_stand_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
@@ -51,3 +57,9 @@ func _on_missed_area_shape_entered(area_rid, area, area_shape_index, local_shape
 		missed(spawned_nodes[-1])
 		spawned_nodes.pop_front().queue_free()  # Remove the spawned node
 		
+func toggle_pause():
+	print("BRUH")
+	is_paused = !is_paused  # Toggle the pause state
+	get_tree().paused = is_paused  # Pause the game
+
+
