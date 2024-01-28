@@ -240,10 +240,12 @@ texture = ExtResource("22_56r4b")
 script = ExtResource("29_81es2")
 
 [node name="note" parent="." instance=ExtResource("25_1k2w0")]
+visible = false
 position = Vector2(272, 297)
 
 [node name="space" type="Sprite2D" parent="note"]
-position = Vector2(-4, -19.8787)
+visible = false
+position = Vector2(4, 7.95147)
 scale = Vector2(1, 0.993937)
 texture = ExtResource("24_1ik18")
 script = ExtResource("24_pwcpo")
