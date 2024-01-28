@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://6170weclm800"]
+[gd_scene load_steps=59 format=3 uid="uid://6170weclm800"]
 
 [ext_resource type="Script" path="res://Scripts/main_game_pause.gd" id="1_2colx"]
 [ext_resource type="PackedScene" uid="uid://c1ybkt20go022" path="res://Scenes/mic_stand.tscn" id="1_4eyq0"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://Scenes/pause_menu.gd" id="10_8dlq5"]
 [ext_resource type="AudioStream" uid="uid://ttsvxl35i1cy" path="res://Assets/boom.wav" id="11_iwprb"]
 [ext_resource type="AudioStream" uid="uid://bi07fpndrgh4q" path="res://Assets/game_over.wav" id="12_loshs"]
+[ext_resource type="AudioStream" uid="uid://mch0nncy81px" path="res://Assets/heart_fast.wav" id="12_xwq3k"]
 [ext_resource type="Texture2D" uid="uid://ditatb7uj21vm" path="res://Assets/pusyyy.webp" id="13_xjjty"]
 [ext_resource type="Texture2D" uid="uid://b4f3y8unmsd3r" path="res://Assets/hollow.png" id="16_phler"]
 [ext_resource type="Texture2D" uid="uid://ba8jdgmll7s2w" path="res://Assets/arrowheads.png" id="19_fnnx0"]
@@ -37,6 +38,21 @@
 [ext_resource type="Script" path="res://Scripts/hit.gd" id="29_oiyjp"]
 [ext_resource type="Texture2D" uid="uid://5uubv6fxm4v6" path="res://Assets/talk.png" id="30_1dj8p"]
 
+[sub_resource type="Animation" id="Animation_4sb8k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Generatedtext:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0719]
+}
+
 [sub_resource type="Animation" id="Animation_scbqg"]
 resource_name = "wobble"
 loop_mode = 1
@@ -51,21 +67,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [-0.0822092, 0.0719, -0.0509309]
-}
-
-[sub_resource type="Animation" id="Animation_4sb8k"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Generatedtext:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0719]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i8wy3"]
@@ -508,10 +509,13 @@ position = Vector2(439, 633)
 position = Vector2(-391, 228)
 script = ExtResource("3_be1sy")
 
+[node name="fast2" type="AudioStreamPlayer2D" parent="Lives"]
+position = Vector2(1564, -912)
+stream = ExtResource("12_xwq3k")
+
 [node name="fast" type="AudioStreamPlayer2D" parent="Lives"]
 position = Vector2(782, -456)
 stream = ExtResource("12_loshs")
-volume_db = 16.561
 
 [node name="Medium" type="Sprite2D" parent="Lives"]
 position = Vector2(991, 133)
@@ -548,6 +552,7 @@ libraries = {
 position = Vector2(992, 132)
 scale = Vector2(0.5, 0.550607)
 stream = ExtResource("11_iwprb")
+volume_db = -7.287
 
 [node name="BadBoom" type="Sprite2D" parent="Lives"]
 modulate = Color(1, 1, 1, 0)
