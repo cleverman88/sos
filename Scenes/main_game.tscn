@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://6170weclm800"]
+[gd_scene load_steps=64 format=3 uid="uid://dksjnlj5yd8sf"]
 
 [ext_resource type="Script" path="res://Scripts/main_game_pause.gd" id="1_2colx"]
 [ext_resource type="PackedScene" uid="uid://c1ybkt20go022" path="res://Scenes/mic_stand.tscn" id="1_4eyq0"]
@@ -31,7 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://5gfnvi2lnuhq" path="res://Assets/open.png" id="24_j6jbo"]
 [ext_resource type="Script" path="res://Scripts/smile.gd" id="24_pwcpo"]
 [ext_resource type="Texture2D" uid="uid://dks44np5qtyq7" path="res://Assets/stop.png" id="25_1iu1g"]
-[ext_resource type="PackedScene" path="res://Scenes/note_new.tscn" id="25_1k2w0"]
+[ext_resource type="PackedScene" uid="uid://yboq4pv31b77" path="res://Scenes/note_new.tscn" id="25_1k2w0"]
 [ext_resource type="AudioStream" uid="uid://blbiawaera82d" path="res://Assets/tracks/GGJ24_Track_4_150BPM_Metronome.wav" id="25_aacse"]
 [ext_resource type="Texture2D" uid="uid://b1ekirxys1jf5" path="res://Assets/pngimg.com - broken_glass_PNG52.png" id="28_vqjcc"]
 [ext_resource type="Script" path="res://Scripts/hollow.gd" id="29_81es2"]
@@ -618,7 +618,7 @@ texture = ExtResource("16_phler")
 script = ExtResource("29_81es2")
 
 [node name="hollow3" type="Sprite2D" parent="Node2D"]
-position = Vector2(168.813, 589.142)
+position = Vector2(173, 589)
 scale = Vector2(0.065, 0.065)
 texture = ExtResource("16_phler")
 script = ExtResource("29_81es2")

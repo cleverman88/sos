@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://pdxjo0p8pxk0"]
+[gd_scene load_steps=7 format=3 uid="uid://tme6id41aqmh"]
 
 [ext_resource type="Script" path="res://Scripts/Menu.gd" id="1_pu4h4"]
 [ext_resource type="Texture2D" uid="uid://b5edpmapf3pna" path="res://Assets/Stage-background-template.png" id="2_y5e33"]
