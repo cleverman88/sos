@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://6170weclm800"]
+[gd_scene load_steps=59 format=3 uid="uid://6170weclm800"]
 
 [ext_resource type="Script" path="res://Scripts/main_game_pause.gd" id="1_2colx"]
 [ext_resource type="PackedScene" uid="uid://c1ybkt20go022" path="res://Scenes/mic_stand.tscn" id="1_4eyq0"]
@@ -10,12 +10,15 @@
 [ext_resource type="Script" path="res://Scripts/Score.gd" id="4_7rvyk"]
 [ext_resource type="Texture2D" uid="uid://b5edpmapf3pna" path="res://Assets/Stage-background-template.png" id="4_t2qyu"]
 [ext_resource type="Script" path="res://Scripts/Combo.gd" id="5_k03vn"]
+[ext_resource type="Texture2D" uid="uid://ml2rjekwyelg" path="res://Assets/generatedtext.png" id="5_qsvtp"]
 [ext_resource type="Texture2D" uid="uid://jtnp0252kmxj" path="res://Assets/border.png" id="6_cf3he"]
 [ext_resource type="Texture2D" uid="uid://dypjymc8xribu" path="res://Assets/placeholder_medium.png" id="9_ogq6v"]
 [ext_resource type="Texture2D" uid="uid://bea4pe01jqkpa" path="res://Assets/placeholder_good.png" id="9_prg7n"]
 [ext_resource type="Texture2D" uid="uid://joroix5f65a7" path="res://Assets/placeholder_skitzo.png" id="9_raivj"]
 [ext_resource type="Script" path="res://Scenes/pause_menu.gd" id="10_8dlq5"]
 [ext_resource type="AudioStream" uid="uid://ttsvxl35i1cy" path="res://Assets/boom.wav" id="11_iwprb"]
+[ext_resource type="AudioStream" uid="uid://bi07fpndrgh4q" path="res://Assets/game_over.wav" id="12_loshs"]
+[ext_resource type="AudioStream" uid="uid://mch0nncy81px" path="res://Assets/heart_fast.wav" id="12_xwq3k"]
 [ext_resource type="Texture2D" uid="uid://ditatb7uj21vm" path="res://Assets/pusyyy.webp" id="13_xjjty"]
 [ext_resource type="Texture2D" uid="uid://b4f3y8unmsd3r" path="res://Assets/hollow.png" id="16_phler"]
 [ext_resource type="Texture2D" uid="uid://ba8jdgmll7s2w" path="res://Assets/arrowheads.png" id="19_fnnx0"]
@@ -38,6 +41,43 @@
 [ext_resource type="AudioStream" uid="uid://cm4bijmsfx5id" path="res://Assets/miss_3.wav" id="30_vm1k6"]
 [ext_resource type="AudioStream" uid="uid://c8nho2dpg4dgd" path="res://Assets/miss_2.wav" id="31_nwiya"]
 [ext_resource type="AudioStream" uid="uid://dpmm8qtoei0x" path="res://Assets/miss_1.wav" id="32_q1dr3"]
+
+[sub_resource type="Animation" id="Animation_4sb8k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Generatedtext:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0719]
+}
+
+[sub_resource type="Animation" id="Animation_scbqg"]
+resource_name = "wobble"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Generatedtext:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.0822092, 0.0719, -0.0509309]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i8wy3"]
+_data = {
+"RESET": SubResource("Animation_4sb8k"),
+"wobble": SubResource("Animation_scbqg")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mvsiy"]
 radius = 24.0208
@@ -454,6 +494,19 @@ position = Vector2(390, 499)
 scale = Vector2(0.770082, 0.775709)
 texture = ExtResource("4_t2qyu")
 
+[node name="morale" type="Node2D" parent="."]
+position = Vector2(602, 448)
+scale = Vector2(0.467273, 0.5)
+
+[node name="Generatedtext" type="Sprite2D" parent="morale"]
+rotation = 0.0719
+texture = ExtResource("5_qsvtp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="morale"]
+libraries = {
+"": SubResource("AnimationLibrary_i8wy3")
+}
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_left = 904.0
 offset_top = 48.0
@@ -494,23 +547,31 @@ position = Vector2(439, 633)
 position = Vector2(-391, 228)
 script = ExtResource("3_be1sy")
 
+[node name="fast2" type="AudioStreamPlayer2D" parent="Lives"]
+position = Vector2(1564, -912)
+stream = ExtResource("12_xwq3k")
+
+[node name="fast" type="AudioStreamPlayer2D" parent="Lives"]
+position = Vector2(782, -456)
+stream = ExtResource("12_loshs")
+
 [node name="Medium" type="Sprite2D" parent="Lives"]
-position = Vector2(992, 132)
+position = Vector2(991, 133)
 scale = Vector2(0.5, 0.550607)
 texture = ExtResource("9_ogq6v")
 
 [node name="Bad" type="Sprite2D" parent="Lives"]
-position = Vector2(993.25, 132)
+position = Vector2(992.5, 133)
 scale = Vector2(0.5, 0.53125)
 texture = ExtResource("9_raivj")
 
 [node name="Good" type="Sprite2D" parent="Lives"]
-position = Vector2(992, 136)
+position = Vector2(991.25, 136.712)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_prg7n")
 
 [node name="Border" type="Sprite2D" parent="Lives"]
-position = Vector2(994, 132)
+position = Vector2(993.25, 133)
 scale = Vector2(0.132, 0.241563)
 texture = ExtResource("6_cf3he")
 
@@ -529,6 +590,7 @@ libraries = {
 position = Vector2(992, 132)
 scale = Vector2(0.5, 0.550607)
 stream = ExtResource("11_iwprb")
+volume_db = -7.287
 
 [node name="BadBoom" type="Sprite2D" parent="Lives"]
 modulate = Color(1, 1, 1, 0)

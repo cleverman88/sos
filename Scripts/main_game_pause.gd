@@ -5,7 +5,7 @@ extends Node2D
 
 @onready var hitscan = $Node2D/AnimationPlayer
 
-
+@onready var wobble = $morale/AnimationPlayer
 
 var paused = false 
 
@@ -24,14 +24,14 @@ var last_note
 		"key": "ui_left",
 		"node": get_node("note/space"),
 		"queue": [],
-		"diff": -210,
+		"diff": -275,
 		"meow" : true
 	},
 	128: {
 		"key": "ui_right",
 		"node": get_node("note/left"),
 		"queue": [],
-		"diff": 20,
+		"diff": -24,
 		"meow" : false
 	},
 }
@@ -39,6 +39,7 @@ var last_note
 var rng = RandomNumberGenerator.new()
 
 func _ready():
+	wobble.play("wobble")
 	process_mode = Node.PROCESS_MODE_PAUSABLE
 	rng.randomize()
 	
@@ -87,7 +88,7 @@ func pauseMenu():
 	
 
 
-const SPAWN_Y = -270
+const SPAWN_Y = -300
 func _on_midi_player_midi_event(channel, event):
 	var s = stuff.get(event.type)
 	print( event.type,meowSkip,beatSkip)
@@ -100,8 +101,8 @@ func _on_midi_player_midi_event(channel, event):
 			i.global_rotation   = s.node.global_rotation
 			i.global_position.y = SPAWN_Y
 			i.global_position.x = s.diff
-			i.global_scale.x = 0.075
-			i.global_scale.y = 0.075
+			i.global_scale.x = 0.08
+			i.global_scale.y = 0.08
 			last_note = s
 			var bkgrnd = find_child("Optionsbackground")
 			bkgrnd.add_child(i)
@@ -117,8 +118,8 @@ func _on_midi_player_midi_event(channel, event):
 			i.global_rotation   = s.node.global_rotation
 			i.global_position.y = SPAWN_Y
 			i.global_position.x = s.diff
-			i.global_scale.x = 0.075
-			i.global_scale.y = 0.075
+			i.global_scale.x = 0.08
+			i.global_scale.y = 0.08
 			last_note = s
 			var bkgrnd = find_child("Optionsbackground")
 			bkgrnd.add_child(i)
@@ -126,7 +127,6 @@ func _on_midi_player_midi_event(channel, event):
 		else:
 			beatSkip += 1
 			
-var num = rng.randi_range(0, 4)
 func missed():
 	get_tree().get_nodes_in_group("combo")[0].total_combo = 1
 	get_tree().get_nodes_in_group("life")[0].total_lives -= 1
@@ -137,6 +137,5 @@ func missed():
 func hit():
 	get_tree().get_nodes_in_group("combo")[0].total_combo *= 2
 	get_tree().get_nodes_in_group("score")[0].total_score += (get_tree().get_nodes_in_group("combo")[0].total_combo *  19)
-
 	print("HIT")
 
