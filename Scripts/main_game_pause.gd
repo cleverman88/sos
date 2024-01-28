@@ -31,9 +31,11 @@ var last_note
 	},
 }
 
+var rng = RandomNumberGenerator.new()
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_PAUSABLE
+	rng.randomize()
 	
 func _process(delta):
 	#if Input.is_action_just_pressed("pause"):
@@ -114,10 +116,15 @@ func _on_midi_player_midi_event(channel, event):
 		else:
 			beatSkip += 1
 			
+var num = rng.randi_range(0, 4)
 func missed():
 	get_tree().get_nodes_in_group("combo")[0].total_combo = 1
 	get_tree().get_nodes_in_group("life")[0].total_lives -= 1
 	h.play("hit")
+	var sfx = AudioStreamPlayer.new()
+	sfx.stream = load("res://Assets/miss" + str(rng.randi_range(1, 3)) + ".wav")
+	add_child(sfx)
+	sfx.play()
 	if get_tree().get_nodes_in_group("life")[0].total_lives == 0:
 		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
 				
