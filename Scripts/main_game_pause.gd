@@ -71,6 +71,7 @@ func _process(delta):
 	
 	if started_at_delta_ == 0.0 and delta_sum_ >= 1.0:
 		started_at_delta_= delta_sum_
+		$music.volume_db = -10
 		$music.play()
 		$music.finished.connect(on_music_end)
 		
@@ -130,11 +131,6 @@ func missed():
 	get_tree().get_nodes_in_group("combo")[0].total_combo = 1
 	get_tree().get_nodes_in_group("life")[0].total_lives -= 1
 	h.play("hit")
-	var sfx = AudioStreamPlayer.new()
-	sfx.stream = load("res://Assets/miss" + str(rng.randi_range(1, 3)) + ".wav")
-	sfx.volume_db = 20
-	add_child(sfx)
-	sfx.play()
 	if get_tree().get_nodes_in_group("life")[0].total_lives == 0:
 		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
 				

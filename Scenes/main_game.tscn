@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://6170weclm800"]
+[gd_scene load_steps=57 format=3 uid="uid://6170weclm800"]
 
 [ext_resource type="Script" path="res://Scripts/main_game_pause.gd" id="1_2colx"]
 [ext_resource type="PackedScene" uid="uid://c1ybkt20go022" path="res://Scenes/mic_stand.tscn" id="1_4eyq0"]
@@ -34,6 +34,9 @@
 [ext_resource type="Script" path="res://Scripts/hollow.gd" id="29_81es2"]
 [ext_resource type="Script" path="res://Scripts/hit.gd" id="29_oiyjp"]
 [ext_resource type="Texture2D" uid="uid://5uubv6fxm4v6" path="res://Assets/talk.png" id="30_1dj8p"]
+[ext_resource type="AudioStream" uid="uid://cm4bijmsfx5id" path="res://Assets/miss_3.wav" id="30_vm1k6"]
+[ext_resource type="AudioStream" uid="uid://c8nho2dpg4dgd" path="res://Assets/miss_2.wav" id="31_nwiya"]
+[ext_resource type="AudioStream" uid="uid://dpmm8qtoei0x" path="res://Assets/miss_1.wav" id="32_q1dr3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mvsiy"]
 radius = 24.0208
@@ -299,7 +302,6 @@ _data = {
 }
 
 [sub_resource type="Animation" id="Animation_ntahf"]
-length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -312,10 +314,30 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("TextureRect/sfx")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"clips": [],
+"times": PackedFloat32Array()
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5vfau"]
+playback_mode = 1
+streams_count = 3
+stream_0/stream = ExtResource("30_vm1k6")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("31_nwiya")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("32_q1dr3")
+stream_2/weight = 1.0
 
 [sub_resource type="Animation" id="Animation_c8orx"]
 resource_name = "hit"
-length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -328,6 +350,21 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0.603922), Color(1, 1, 1, 0)]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect/sfx")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_5vfau")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0jk6k"]
 _data = {
@@ -598,6 +635,9 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_0jk6k")
 }
+
+[node name="sfx" type="AudioStreamPlayer" parent="TextureRect"]
+volume_db = 24.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_wllg1")
