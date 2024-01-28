@@ -99,7 +99,7 @@ func _on_midi_player_midi_event(channel, event):
 			i.add_to_group("notes")
 			i.expected_time     = delta_sum_ + 1.0
 			i.global_rotation   = s.node.global_rotation
-			i.global_position.y = SPAWN_Y
+			i.global_position.y = SPAWN_Y + 10
 			i.global_position.x = s.diff
 			i.global_scale.x = 0.08
 			i.global_scale.y = 0.08
