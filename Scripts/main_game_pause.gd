@@ -88,8 +88,8 @@ func _on_midi_player_midi_event(channel, event):
 			i.global_rotation   = s.node.global_rotation
 			i.global_position.y = SPAWN_Y
 			i.global_position.x = s.diff
-			i.global_scale.x = 0.30
-			i.global_scale.y = 0.31
+			i.global_scale.x = 0.075
+			i.global_scale.y = 0.075
 			last_note = s
 			var bkgrnd = find_child("Optionsbackground")
 			bkgrnd.add_child(i)
@@ -105,8 +105,8 @@ func _on_midi_player_midi_event(channel, event):
 			i.global_rotation   = s.node.global_rotation
 			i.global_position.y = SPAWN_Y
 			i.global_position.x = s.diff
-			i.global_scale.x = 0.30
-			i.global_scale.y = 0.31
+			i.global_scale.x = 0.075
+			i.global_scale.y = 0.075
 			last_note = s
 			var bkgrnd = find_child("Optionsbackground")
 			bkgrnd.add_child(i)
