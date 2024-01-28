@@ -18,14 +18,14 @@ var last_note
 		"key": "ui_left",
 		"node": get_node("note/space"),
 		"queue": [],
-		"diff": -215,
+		"diff": -20,
 		"meow" : true
 	},
 	128: {
 		"key": "ui_right",
 		"node": get_node("note/left"),
 		"queue": [],
-		"diff": 25,
+		"diff": 20,
 		"meow" : false
 	},
 }
@@ -87,6 +87,8 @@ func _on_midi_player_midi_event(channel, event):
 			i.global_rotation   = s.node.global_rotation
 			i.global_position.y = SPAWN_Y
 			i.global_position.x = s.diff
+			i.global_scale.x = 0.30
+			i.global_scale.y = 0.31
 			last_note = s
 			var bkgrnd = find_child("Optionsbackground")
 			bkgrnd.add_child(i)
@@ -102,6 +104,8 @@ func _on_midi_player_midi_event(channel, event):
 			i.global_rotation   = s.node.global_rotation
 			i.global_position.y = SPAWN_Y
 			i.global_position.x = s.diff
+			i.global_scale.x = 0.30
+			i.global_scale.y = 0.31
 			last_note = s
 			var bkgrnd = find_child("Optionsbackground")
 			bkgrnd.add_child(i)
