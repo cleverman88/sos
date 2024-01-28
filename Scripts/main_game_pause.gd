@@ -18,7 +18,7 @@ var last_note
 		"key": "ui_left",
 		"node": get_node("note/space"),
 		"queue": [],
-		"diff": -20,
+		"diff": -210,
 		"meow" : true
 	},
 	128: {
