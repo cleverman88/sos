@@ -1,29 +1,30 @@
-[gd_scene load_steps=33 format=3 uid="uid://6170weclm800"]
+[gd_scene load_steps=34 format=3 uid="uid://6170weclm800"]
 
 [ext_resource type="Script" path="res://Scripts/main_game_pause.gd" id="1_2colx"]
 [ext_resource type="PackedScene" uid="uid://c1ybkt20go022" path="res://Scenes/mic_stand.tscn" id="1_4eyq0"]
 [ext_resource type="Shader" path="res://Shaders/main_game.gdshader" id="1_g5o4w"]
+[ext_resource type="PackedScene" uid="uid://cuyd1qv0pn26e" path="res://addons/midi/MidiPlayer.tscn" id="2_i6qin"]
 [ext_resource type="Texture2D" uid="uid://c473pig0o8xxp" path="res://Assets/background.webp" id="2_wb45q"]
 [ext_resource type="Script" path="res://Scripts/audio/conductor.gd" id="3_7j3lf"]
 [ext_resource type="Script" path="res://Scripts/Lives.gd" id="3_be1sy"]
-[ext_resource type="Script" path="res://Scripts/spawn.gd" id="4_0fhsn"]
 [ext_resource type="Script" path="res://Scripts/Score.gd" id="4_7rvyk"]
 [ext_resource type="Script" path="res://Scripts/Combo.gd" id="5_k03vn"]
 [ext_resource type="Texture2D" uid="uid://jtnp0252kmxj" path="res://Assets/border.png" id="6_cf3he"]
-[ext_resource type="AudioStream" uid="uid://wbvmcowhebjm" path="res://Assets/hit_1.wav" id="6_w1riw"]
-[ext_resource type="AudioStream" uid="uid://cxnkp10dg7mi3" path="res://Assets/hit_2.wav" id="7_i3lxx"]
 [ext_resource type="Texture2D" uid="uid://dttnnwao4o2ua" path="res://Assets/placeholder_stage.png" id="8_lbuex"]
-[ext_resource type="AudioStream" uid="uid://w4p75rdvik08" path="res://Assets/hit_3.wav" id="8_w1sem"]
-[ext_resource type="AudioStream" uid="uid://c35s77xja7rk3" path="res://Assets/hit_0.wav" id="9_kxsn0"]
 [ext_resource type="Texture2D" uid="uid://dypjymc8xribu" path="res://Assets/placeholder_medium.png" id="9_ogq6v"]
 [ext_resource type="Texture2D" uid="uid://bea4pe01jqkpa" path="res://Assets/placeholder_good.png" id="9_prg7n"]
 [ext_resource type="Texture2D" uid="uid://joroix5f65a7" path="res://Assets/placeholder_skitzo.png" id="9_raivj"]
 [ext_resource type="Script" path="res://Scenes/pause_menu.gd" id="10_8dlq5"]
-[ext_resource type="AudioStream" uid="uid://c4fr7ivapuxmd" path="res://Assets/miss.wav" id="10_nawh6"]
 [ext_resource type="AudioStream" uid="uid://ttsvxl35i1cy" path="res://Assets/boom.wav" id="11_iwprb"]
 [ext_resource type="Texture2D" uid="uid://ditatb7uj21vm" path="res://Assets/pusyyy.webp" id="13_xjjty"]
 [ext_resource type="Script" path="res://Scripts/pulse.gd" id="19_xs4la"]
+[ext_resource type="Texture2D" uid="uid://bipfmnyexqelq" path="res://Assets/left.png" id="22_56r4b"]
 [ext_resource type="Texture2D" uid="uid://dgnmww7flww82" path="res://Assets/tv.png" id="23_lsjqg"]
+[ext_resource type="Texture2D" uid="uid://27658pe1tcox" path="res://Assets/right.png" id="24_1ik18"]
+[ext_resource type="Script" path="res://Scripts/smile.gd" id="24_pwcpo"]
+[ext_resource type="PackedScene" uid="uid://yboq4pv31b77" path="res://Scenes/note_new.tscn" id="25_1k2w0"]
+[ext_resource type="AudioStream" uid="uid://blbiawaera82d" path="res://Assets/tracks/GGJ24_Track_4_150BPM_Metronome.wav" id="25_aacse"]
+[ext_resource type="Script" path="res://Scripts/hollow.gd" id="29_81es2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mvsiy"]
 radius = 24.0208
@@ -131,6 +132,10 @@ process_mode = 3
 position = Vector2(96, -144)
 script = ExtResource("1_2colx")
 
+[node name="MidiPlayer" parent="." instance=ExtResource("2_i6qin")]
+file = "res://Assets/GGJ24_Track_4_PATTERN_MIDI_150BPM.mid"
+playing = true
+
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(520, 472)
 scale = Vector2(2.09333, 1.22)
@@ -158,30 +163,6 @@ script = ExtResource("4_7rvyk")
 [node name="Combo" type="Label" parent="MarginContainer/VBoxContainer" groups=["combo"]]
 layout_mode = 2
 script = ExtResource("5_k03vn")
-
-[node name="spawn" type="Marker2D" parent="." groups=["spawn"]]
-position = Vector2(118, 387)
-script = ExtResource("4_0fhsn")
-
-[node name="hit_1" type="AudioStreamPlayer2D" parent="spawn"]
-position = Vector2(-128, -256)
-stream = ExtResource("6_w1riw")
-
-[node name="hit_2" type="AudioStreamPlayer2D" parent="spawn"]
-position = Vector2(-256, -512)
-stream = ExtResource("7_i3lxx")
-
-[node name="hit_3" type="AudioStreamPlayer2D" parent="spawn"]
-position = Vector2(-384, -768)
-stream = ExtResource("8_w1sem")
-
-[node name="hit_0" type="AudioStreamPlayer2D" parent="spawn"]
-position = Vector2(-512, -1024)
-stream = ExtResource("9_kxsn0")
-
-[node name="miss" type="AudioStreamPlayer2D" parent="spawn"]
-position = Vector2(-256, -512)
-stream = ExtResource("10_nawh6")
 
 [node name="conductor" type="Node" parent="."]
 script = ExtResource("3_7j3lf")
@@ -252,6 +233,21 @@ libraries = {
 "": SubResource("AnimationLibrary_dg6fo")
 }
 
+[node name="hollow" type="Sprite2D" parent="."]
+position = Vector2(272, 596)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("22_56r4b")
+script = ExtResource("29_81es2")
+
+[node name="note" parent="." instance=ExtResource("25_1k2w0")]
+position = Vector2(272, 297)
+
+[node name="space" type="Sprite2D" parent="note"]
+position = Vector2(-4, -19.8787)
+scale = Vector2(1, 0.993937)
+texture = ExtResource("24_1ik18")
+script = ExtResource("24_pwcpo")
+
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_wllg1")
 offset_left = -20.0
@@ -312,9 +308,10 @@ position = Vector2(534.998, 458.499)
 scale = Vector2(1.16746, 1.05878)
 texture = ExtResource("23_lsjqg")
 
-[connection signal="area_shape_entered" from="missed" to="spawn" method="_on_missed_area_shape_entered"]
-[connection signal="area_shape_entered" from="mic_stand" to="spawn" method="_on_mic_stand_area_shape_entered"]
-[connection signal="area_shape_exited" from="mic_stand" to="spawn" method="_on_mic_stand_area_shape_exited"]
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_aacse")
+
+[connection signal="midi_event" from="MidiPlayer" to="." method="_on_midi_player_midi_event"]
 [connection signal="body_entered" from="mic_stand" to="mic_stand" method="_on_body_entered"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Restart" to="PauseMenu" method="_on_restart_pressed"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Options" to="PauseMenu" method="_on_options_pressed"]

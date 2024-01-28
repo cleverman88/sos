@@ -12,8 +12,9 @@ var playNextAt: float # when to play the next song
 var level = 0
 
 func _ready():
-	select_next_song()
-	play_next()
+	#select_next_song()
+	#play_next()
+	pass
 	
 func play_next():
 	var s = super.play_next()

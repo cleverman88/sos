@@ -1,0 +1,318 @@
+[gd_scene load_steps=34 format=3 uid="uid://6170weclm800"]
+
+[ext_resource type="Script" path="res://Scripts/main_game_pause.gd" id="1_2colx"]
+[ext_resource type="PackedScene" uid="uid://c1ybkt20go022" path="res://Scenes/mic_stand.tscn" id="1_4eyq0"]
+[ext_resource type="Shader" path="res://Shaders/main_game.gdshader" id="1_g5o4w"]
+[ext_resource type="PackedScene" uid="uid://cuyd1qv0pn26e" path="res://addons/midi/MidiPlayer.tscn" id="2_i6qin"]
+[ext_resource type="Texture2D" uid="uid://c473pig0o8xxp" path="res://Assets/background.webp" id="2_wb45q"]
+[ext_resource type="Script" path="res://Scripts/audio/conductor.gd" id="3_7j3lf"]
+[ext_resource type="Script" path="res://Scripts/Lives.gd" id="3_be1sy"]
+[ext_resource type="Script" path="res://Scripts/Score.gd" id="4_7rvyk"]
+[ext_resource type="Script" path="res://Scripts/Combo.gd" id="5_k03vn"]
+[ext_resource type="Texture2D" uid="uid://jtnp0252kmxj" path="res://Assets/border.png" id="6_cf3he"]
+[ext_resource type="Texture2D" uid="uid://dttnnwao4o2ua" path="res://Assets/placeholder_stage.png" id="8_lbuex"]
+[ext_resource type="Texture2D" uid="uid://dypjymc8xribu" path="res://Assets/placeholder_medium.png" id="9_ogq6v"]
+[ext_resource type="Texture2D" uid="uid://bea4pe01jqkpa" path="res://Assets/placeholder_good.png" id="9_prg7n"]
+[ext_resource type="Texture2D" uid="uid://joroix5f65a7" path="res://Assets/placeholder_skitzo.png" id="9_raivj"]
+[ext_resource type="Script" path="res://Scenes/pause_menu.gd" id="10_8dlq5"]
+[ext_resource type="AudioStream" uid="uid://ttsvxl35i1cy" path="res://Assets/boom.wav" id="11_iwprb"]
+[ext_resource type="Texture2D" uid="uid://ditatb7uj21vm" path="res://Assets/pusyyy.webp" id="13_xjjty"]
+[ext_resource type="Script" path="res://Scripts/pulse.gd" id="19_xs4la"]
+[ext_resource type="Texture2D" uid="uid://bipfmnyexqelq" path="res://Assets/left.png" id="22_56r4b"]
+[ext_resource type="Texture2D" uid="uid://dgnmww7flww82" path="res://Assets/tv.png" id="23_lsjqg"]
+[ext_resource type="Texture2D" uid="uid://27658pe1tcox" path="res://Assets/right.png" id="24_1ik18"]
+[ext_resource type="Script" path="res://Scripts/smile.gd" id="24_pwcpo"]
+[ext_resource type="PackedScene" uid="uid://yboq4pv31b77" path="res://Scenes/note_new.tscn" id="25_1k2w0"]
+[ext_resource type="AudioStream" uid="uid://blbiawaera82d" path="res://Assets/tracks/GGJ24_Track_4_150BPM_Metronome.wav" id="25_aacse"]
+[ext_resource type="Script" path="res://Scripts/hollow.gd" id="29_81es2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mvsiy"]
+radius = 24.0208
+
+[sub_resource type="Animation" id="Animation_cojei"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_q13li"]
+resource_name = "expload"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dg6fo"]
+_data = {
+"RESET": SubResource("Animation_cojei"),
+"expload": SubResource("Animation_q13li")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wllg1"]
+shader = ExtResource("1_g5o4w")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.088
+shader_parameter/scanlines_width = 0.052
+shader_parameter/grille_opacity = 0.094
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 3.0
+shader_parameter/roll_size = 4.411
+shader_parameter/roll_variation = 1.404
+shader_parameter/distort_intensity = 0.031
+shader_parameter/noise_opacity = 0.17
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.14
+shader_parameter/aberration = 0.00100005
+shader_parameter/brightness = 1.0
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.674
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.512
+
+[sub_resource type="Animation" id="Animation_ppm5w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/warp_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.674]
+}
+
+[sub_resource type="Animation" id="Animation_8ftxu"]
+resource_name = "pulse"
+length = 0.2
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/warp_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.05),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 1.674, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3frhd"]
+_data = {
+"RESET": SubResource("Animation_ppm5w"),
+"pulse": SubResource("Animation_8ftxu")
+}
+
+[node name="Game" type="Node2D"]
+process_mode = 3
+position = Vector2(96, -144)
+script = ExtResource("1_2colx")
+
+[node name="MidiPlayer" parent="." instance=ExtResource("2_i6qin")]
+file = "res://Assets/GGJ24_Track_4_PATTERN_MIDI_150BPM.mid"
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(520, 472)
+scale = Vector2(2.09333, 1.22)
+texture = ExtResource("2_wb45q")
+
+[node name="Optionsbackground" type="Sprite2D" parent="."]
+position = Vector2(354.5, 444)
+scale = Vector2(0.870117, 0.679688)
+texture = ExtResource("8_lbuex")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = 904.0
+offset_top = 48.0
+offset_right = 1040.0
+offset_bottom = 504.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Score" type="Label" parent="MarginContainer/VBoxContainer" groups=["score"]]
+texture_filter = 1
+layout_mode = 2
+script = ExtResource("4_7rvyk")
+
+[node name="Combo" type="Label" parent="MarginContainer/VBoxContainer" groups=["combo"]]
+layout_mode = 2
+script = ExtResource("5_k03vn")
+
+[node name="conductor" type="Node" parent="."]
+script = ExtResource("3_7j3lf")
+
+[node name="missed" type="Area2D" parent="." groups=["missed"]]
+position = Vector2(493, 501)
+
+[node name="Pusyyy" type="Sprite2D" parent="missed"]
+position = Vector2(24, 72)
+scale = Vector2(0.276403, 0.283333)
+texture = ExtResource("13_xjjty")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="missed"]
+position = Vector2(35, 38)
+shape = SubResource("CircleShape2D_mvsiy")
+
+[node name="mic_stand" parent="." groups=["mic"] instance=ExtResource("1_4eyq0")]
+position = Vector2(439, 633)
+
+[node name="Lives" type="Node2D" parent="." groups=["life"]]
+position = Vector2(-391, 228)
+script = ExtResource("3_be1sy")
+
+[node name="Medium" type="Sprite2D" parent="Lives"]
+position = Vector2(992, 132)
+scale = Vector2(0.5, 0.550607)
+texture = ExtResource("9_ogq6v")
+
+[node name="Bad" type="Sprite2D" parent="Lives"]
+position = Vector2(993.25, 132)
+scale = Vector2(0.5, 0.53125)
+texture = ExtResource("9_raivj")
+
+[node name="Good" type="Sprite2D" parent="Lives"]
+position = Vector2(992, 136)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_prg7n")
+
+[node name="Border" type="Sprite2D" parent="Lives"]
+position = Vector2(994, 132)
+scale = Vector2(0.132, 0.241563)
+texture = ExtResource("6_cf3he")
+
+[node name="MediumBoom" type="Sprite2D" parent="Lives"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(792, 252)
+scale = Vector2(3.375, 2.23482)
+texture = ExtResource("9_ogq6v")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Lives/MediumBoom"]
+libraries = {
+"": SubResource("AnimationLibrary_dg6fo")
+}
+
+[node name="boom" type="AudioStreamPlayer2D" parent="Lives"]
+position = Vector2(992, 132)
+scale = Vector2(0.5, 0.550607)
+stream = ExtResource("11_iwprb")
+
+[node name="BadBoom" type="Sprite2D" parent="Lives"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(766, 243.5)
+scale = Vector2(3.38697, 2.16016)
+texture = ExtResource("9_raivj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Lives/BadBoom"]
+libraries = {
+"": SubResource("AnimationLibrary_dg6fo")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_wllg1")
+offset_left = -20.0
+offset_top = 189.0
+offset_right = 776.0
+offset_bottom = 747.0
+color = Color(0.854902, 0.156863, 0.286275, 1)
+script = ExtResource("19_xs4la")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect"]
+libraries = {
+"": SubResource("AnimationLibrary_3frhd")
+}
+
+[node name="PauseMenu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 567.0
+offset_top = 284.0
+offset_right = 607.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("10_8dlq5")
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="Restart" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="Options" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="Menu" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Menu"
+
+[node name="Exit" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[node name="Tv" type="Sprite2D" parent="."]
+position = Vector2(534.998, 458.499)
+scale = Vector2(1.16746, 1.05878)
+texture = ExtResource("23_lsjqg")
+
+[node name="note" parent="." instance=ExtResource("25_1k2w0")]
+position = Vector2(272, 297)
+
+[node name="space" type="Sprite2D" parent="note"]
+position = Vector2(-4, -19.8787)
+scale = Vector2(1, 0.993937)
+texture = ExtResource("24_1ik18")
+script = ExtResource("24_pwcpo")
+
+[node name="hollow" type="Sprite2D" parent="."]
+position = Vector2(272, 596)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("22_56r4b")
+script = ExtResource("29_81es2")
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_aacse")
+
+[connection signal="midi_event" from="MidiPlayer" to="." method="_on_midi_player_midi_event"]
+[connection signal="body_entered" from="mic_stand" to="mic_stand" method="_on_body_entered"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Restart" to="PauseMenu" method="_on_restart_pressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Options" to="PauseMenu" method="_on_options_pressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Menu" to="PauseMenu" method="_on_menu_pressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Exit" to="PauseMenu" method="_on_exit_pressed"]

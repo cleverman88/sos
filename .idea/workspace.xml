@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:feat" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ca3f4203-1041-4ce0-958e-2f5160684a8a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Scenes/note.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Scenes/note.tscn" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.2.3\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2bYcxxjnoGi9hqnSCNCcLJeTacS" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ca3f4203-1041-4ce0-958e-2f5160684a8a" name="Default Changelist" comment="" />
+      <created>1706395702891</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1706395702891</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1706442003550">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1060" y="455" key="FileChooserDialogImpl/2560.0.2560.1400/0.0.2560.1400/-2560.0.2560.1440@0.0.2560.1400" timestamp="1706442003550" />
+    <state x="248" y="122" key="MergeDialog" timestamp="1706395774215">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="248" y="122" key="MergeDialog/2560.0.2560.1400/0.0.2560.1400/-2560.0.2560.1440@0.0.2560.1400" timestamp="1706395774215" />
+    <state x="918" y="461" key="MultipleFileMergeDialog" timestamp="1706395774222">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="918" y="461" key="MultipleFileMergeDialog/2560.0.2560.1400/0.0.2560.1400/-2560.0.2560.1440@0.0.2560.1400" timestamp="1706395774222" />
+    <state x="872" y="433" key="Vcs.Push.Dialog.v2" timestamp="1706395781818">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="872" y="433" key="Vcs.Push.Dialog.v2/2560.0.2560.1400/0.0.2560.1400/-2560.0.2560.1440@0.0.2560.1400" timestamp="1706395781818" />
+    <state x="987" y="433" width="585" height="534" key="find.popup" timestamp="1706442029685">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="987" y="433" width="585" height="534" key="find.popup/2560.0.2560.1400/0.0.2560.1400/-2560.0.2560.1440@0.0.2560.1400" timestamp="1706442029685" />
+  </component>
+</project>
