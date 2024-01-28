@@ -234,7 +234,13 @@ libraries = {
 }
 
 [node name="hollow" type="Sprite2D" parent="."]
-position = Vector2(272, 596)
+position = Vector2(172, 596)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("22_56r4b")
+script = ExtResource("29_81es2")
+
+[node name="hollow2" type="Sprite2D" parent="."]
+position = Vector2(372, 596)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("22_56r4b")
 script = ExtResource("29_81es2")
@@ -247,6 +253,13 @@ position = Vector2(272, 297)
 visible = false
 position = Vector2(4, 7.95147)
 scale = Vector2(1, 0.993937)
+texture = ExtResource("24_1ik18")
+script = ExtResource("24_pwcpo")
+
+[node name="left" type="Sprite2D" parent="note"]
+visible = false
+position = Vector2(8, 15.8547)
+scale = Vector2(1, 0.987911)
 texture = ExtResource("24_1ik18")
 script = ExtResource("24_pwcpo")
 
@@ -314,6 +327,7 @@ texture = ExtResource("23_lsjqg")
 stream = ExtResource("25_aacse")
 
 [connection signal="midi_event" from="MidiPlayer" to="." method="_on_midi_player_midi_event"]
+[connection signal="midi_event" from="MidiPlayer" to="ColorRect" method="_on_midi_player_midi_event"]
 [connection signal="body_entered" from="mic_stand" to="mic_stand" method="_on_body_entered"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Restart" to="PauseMenu" method="_on_restart_pressed"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Options" to="PauseMenu" method="_on_options_pressed"]
