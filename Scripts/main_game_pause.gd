@@ -18,14 +18,14 @@ var last_note
 		"key": "ui_left",
 		"node": get_node("note/space"),
 		"queue": [],
-		"diff": -100,
+		"diff": -215,
 		"meow" : true
 	},
 	128: {
 		"key": "ui_right",
 		"node": get_node("note/left"),
 		"queue": [],
-		"diff": 100,
+		"diff": 25,
 		"meow" : false
 	},
 }
@@ -74,6 +74,7 @@ func pauseMenu():
 	
 
 
+const SPAWN_Y = -270
 func _on_midi_player_midi_event(channel, event):
 	var s = stuff.get(event.type)
 	print( event.type,meowSkip,beatSkip)
@@ -81,12 +82,14 @@ func _on_midi_player_midi_event(channel, event):
 		if event.type == 144 and (meowSkip % 2 == 0):
 			meowSkip += 1
 			var i = notes.instantiate()
-			add_child(i)
+			i.add_to_group("notes")
 			i.expected_time     = delta_sum_ + 1.0
 			i.global_rotation   = s.node.global_rotation
-			i.global_position.y = 125
-			i.global_position.x = s.node.global_position.x + s.diff 
+			i.global_position.y = SPAWN_Y
+			i.global_position.x = s.diff
 			last_note = s
+			var bkgrnd = find_child("Optionsbackground")
+			bkgrnd.add_child(i)
 			s.queue.push_back(i)
 		else:
 			meowSkip += 1
@@ -94,12 +97,14 @@ func _on_midi_player_midi_event(channel, event):
 		if event.type == 128 and (beatSkip % 4 == 0):
 			beatSkip += 1
 			var i = notes.instantiate()
-			add_child(i)
+			i.add_to_group("notes")
 			i.expected_time     = delta_sum_ + 1.0
 			i.global_rotation   = s.node.global_rotation
-			i.global_position.y = 125
-			i.global_position.x = s.node.global_position.x + s.diff
+			i.global_position.y = SPAWN_Y
+			i.global_position.x = s.diff
 			last_note = s
+			var bkgrnd = find_child("Optionsbackground")
+			bkgrnd.add_child(i)
 			s.queue.push_back(i)
 		else:
 			beatSkip += 1
