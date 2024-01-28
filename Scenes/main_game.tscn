@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://6170weclm800"]
+[gd_scene load_steps=54 format=3 uid="uid://6170weclm800"]
 
 [ext_resource type="Script" path="res://Scripts/main_game_pause.gd" id="1_2colx"]
 [ext_resource type="PackedScene" uid="uid://c1ybkt20go022" path="res://Scenes/mic_stand.tscn" id="1_4eyq0"]
@@ -8,9 +8,9 @@
 [ext_resource type="Script" path="res://Scripts/audio/conductor.gd" id="3_7j3lf"]
 [ext_resource type="Script" path="res://Scripts/Lives.gd" id="3_be1sy"]
 [ext_resource type="Script" path="res://Scripts/Score.gd" id="4_7rvyk"]
+[ext_resource type="Texture2D" uid="uid://b5edpmapf3pna" path="res://Assets/Stage-background-template.png" id="4_t2qyu"]
 [ext_resource type="Script" path="res://Scripts/Combo.gd" id="5_k03vn"]
 [ext_resource type="Texture2D" uid="uid://jtnp0252kmxj" path="res://Assets/border.png" id="6_cf3he"]
-[ext_resource type="Texture2D" uid="uid://dttnnwao4o2ua" path="res://Assets/placeholder_stage.png" id="8_lbuex"]
 [ext_resource type="Texture2D" uid="uid://dypjymc8xribu" path="res://Assets/placeholder_medium.png" id="9_ogq6v"]
 [ext_resource type="Texture2D" uid="uid://bea4pe01jqkpa" path="res://Assets/placeholder_good.png" id="9_prg7n"]
 [ext_resource type="Texture2D" uid="uid://joroix5f65a7" path="res://Assets/placeholder_skitzo.png" id="9_raivj"]
@@ -28,12 +28,13 @@
 [ext_resource type="Texture2D" uid="uid://5gfnvi2lnuhq" path="res://Assets/open.png" id="24_j6jbo"]
 [ext_resource type="Script" path="res://Scripts/smile.gd" id="24_pwcpo"]
 [ext_resource type="Texture2D" uid="uid://dks44np5qtyq7" path="res://Assets/stop.png" id="25_1iu1g"]
-[ext_resource type="PackedScene" uid="uid://yboq4pv31b77" path="res://Scenes/note_new.tscn" id="25_1k2w0"]
+[ext_resource type="PackedScene" path="res://Scenes/note_new.tscn" id="25_1k2w0"]
 [ext_resource type="AudioStream" uid="uid://blbiawaera82d" path="res://Assets/tracks/GGJ24_Track_4_150BPM_Metronome.wav" id="25_aacse"]
 [ext_resource type="Texture2D" uid="uid://b1ekirxys1jf5" path="res://Assets/pngimg.com - broken_glass_PNG52.png" id="28_vqjcc"]
 [ext_resource type="Script" path="res://Scripts/hollow.gd" id="29_81es2"]
 [ext_resource type="Script" path="res://Scripts/hit.gd" id="29_oiyjp"]
 [ext_resource type="Texture2D" uid="uid://5uubv6fxm4v6" path="res://Assets/talk.png" id="30_1dj8p"]
+[ext_resource type="FontFile" uid="uid://c8xeqksj6y2nh" path="res://Assets/Fonts/papyrus.ttf" id="33_0svao"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mvsiy"]
 radius = 24.0208
@@ -412,9 +413,9 @@ scale = Vector2(2.09333, 1.22)
 texture = ExtResource("2_wb45q")
 
 [node name="Optionsbackground" type="Sprite2D" parent="."]
-position = Vector2(354.5, 444)
-scale = Vector2(0.870117, 0.679688)
-texture = ExtResource("8_lbuex")
+position = Vector2(390, 499)
+scale = Vector2(0.770082, 0.775709)
+texture = ExtResource("4_t2qyu")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_left = 904.0
@@ -639,19 +640,27 @@ offset_bottom = 40.0
 layout_mode = 2
 
 [node name="Restart" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
+theme_override_fonts/font = ExtResource("33_0svao")
 text = "Restart"
 
 [node name="Options" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
+theme_override_fonts/font = ExtResource("33_0svao")
 text = "Options"
 
 [node name="Menu" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
+theme_override_fonts/font = ExtResource("33_0svao")
 text = "Menu"
 
 [node name="Exit" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
+theme_override_fonts/font = ExtResource("33_0svao")
 text = "Exit"
 
 [node name="Tv" type="Sprite2D" parent="."]

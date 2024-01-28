@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwxlwiioyr2dh"]
+[gd_scene load_steps=7 format=3 uid="uid://bwxlwiioyr2dh"]
 
 [ext_resource type="Script" path="res://Scripts/Options_menu.gd" id="1_vvrlx"]
 [ext_resource type="Texture2D" uid="uid://c131nuiw1p1xg" path="res://Assets/optionsbackground.jpg" id="1_wi3b4"]
 [ext_resource type="Shader" path="res://Shaders/main_game.gdshader" id="2_50dl1"]
-[ext_resource type="AudioStream" path="res://Assets/tracks/GGJ24_Title_Screen_Track_Kapi.wav" id="4_3a3t8"]
+[ext_resource type="FontFile" uid="uid://c8xeqksj6y2nh" path="res://Assets/Fonts/papyrus.ttf" id="3_6mbc3"]
+[ext_resource type="AudioStream" uid="uid://dgnu4sjg2lpxs" path="res://Assets/tracks/GGJ24_Title_Screen_Track_Kapi.wav" id="4_3a3t8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2osbt"]
 shader = ExtResource("2_50dl1")
@@ -76,13 +77,17 @@ layout_mode = 2
 size_flags_vertical = 4
 
 [node name="Volume" type="Button" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6mbc3")
 text = "Volume
 "
 
 [node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("3_6mbc3")
 text = "Back
 "
 script = ExtResource("1_vvrlx")

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://djevcogtwo0tn"]
+[gd_scene load_steps=7 format=3 uid="uid://djevcogtwo0tn"]
 
 [ext_resource type="Script" path="res://Scripts/Volume_Menu.gd" id="1_bwh21"]
 [ext_resource type="Texture2D" uid="uid://c131nuiw1p1xg" path="res://Assets/optionsbackground.jpg" id="2_e8ylv"]
 [ext_resource type="Shader" path="res://Shaders/main_game.gdshader" id="3_e2iay"]
-[ext_resource type="AudioStream" path="res://Assets/tracks/GGJ24_Title_Screen_Track_Kapi.wav" id="4_mhwir"]
+[ext_resource type="FontFile" uid="uid://c8xeqksj6y2nh" path="res://Assets/Fonts/papyrus.ttf" id="4_btcw7"]
+[ext_resource type="AudioStream" uid="uid://dgnu4sjg2lpxs" path="res://Assets/tracks/GGJ24_Title_Screen_Track_Kapi.wav" id="4_mhwir"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pupwm"]
 shader = ExtResource("3_e2iay")
@@ -84,7 +85,9 @@ grow_vertical = 0
 layout_mode = 2
 
 [node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_btcw7")
 text = "Back"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

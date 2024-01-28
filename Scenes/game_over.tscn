@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cv7g3r6024ps8"]
+[gd_scene load_steps=6 format=3 uid="uid://cv7g3r6024ps8"]
 
 [ext_resource type="Script" path="res://GameOver.gd" id="1_3cp1k"]
 [ext_resource type="Shader" path="res://Shaders/main_game.gdshader" id="1_7ba8w"]
 [ext_resource type="Texture2D" uid="uid://bsy22gh7a46i2" path="res://Assets/gameover.png" id="2_efc3h"]
+[ext_resource type="FontFile" uid="uid://c8xeqksj6y2nh" path="res://Assets/Fonts/papyrus.ttf" id="4_yxis3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fyg4a"]
 shader = ExtResource("1_7ba8w")
@@ -69,13 +70,17 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="Restart" type="Button" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("4_yxis3")
 text = "Restart"
 
 [node name="Menu" type="Button" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_yxis3")
 text = "Menu"
 
 [connection signal="ready" from="." to="." method="_on_ready"]
