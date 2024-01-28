@@ -7,6 +7,7 @@ var paused = false
 @onready var notes = preload("res://Scenes/note_new.tscn")
 
 var delta_sum_ := 0.0
+var started_at_delta_ = 0.0
 
 var left := []
 
@@ -46,8 +47,13 @@ func _process(delta):
 	for s in stuff.values():
 		s.node.pressed = Input.is_action_pressed(s.key)
 	
-	if delta_sum_ >= 1.0 and not $music.playing:
+	if started_at_delta_ == 0.0 and delta_sum_ >= 1.0:
+		started_at_delta_= delta_sum_
 		$music.play()
+		$music.finished.connect(on_music_end)
+		
+func on_music_end():
+	get_tree().change_scene_to_file("res://Scenes/menu.tscn")
 
 func pauseMenu():
 	if paused:
