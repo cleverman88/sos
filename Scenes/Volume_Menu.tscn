@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://djevcogtwo0tn"]
 
 [ext_resource type="Script" path="res://Scripts/Volume_Menu.gd" id="1_bwh21"]
-[ext_resource type="Texture2D" uid="uid://c131nuiw1p1xg" path="res://Assets/optionsbackground.jpg" id="2_e8ylv"]
+[ext_resource type="Texture2D" uid="uid://b5edpmapf3pna" path="res://Assets/Stage-background-template.png" id="2_sgihc"]
 [ext_resource type="Shader" path="res://Shaders/main_game.gdshader" id="3_e2iay"]
 [ext_resource type="FontFile" uid="uid://c8xeqksj6y2nh" path="res://Assets/Fonts/papyrus.ttf" id="4_btcw7"]
 [ext_resource type="AudioStream" uid="uid://dgnu4sjg2lpxs" path="res://Assets/tracks/GGJ24_Title_Screen_Track_Kapi.wav" id="4_mhwir"]
@@ -40,9 +40,9 @@ grow_vertical = 2
 script = ExtResource("1_bwh21")
 
 [node name="Optionsbackground" type="Sprite2D" parent="."]
-position = Vector2(577, 329)
-scale = Vector2(1.83866, 1.72266)
-texture = ExtResource("2_e8ylv")
+position = Vector2(567, 354)
+scale = Vector2(-1.12475, 0.700342)
+texture = ExtResource("2_sgihc")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_pupwm")
@@ -75,11 +75,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -50.0
-offset_top = -40.0
-offset_right = 50.0
+offset_left = -62.0
+offset_top = -209.0
+offset_right = 38.0
+offset_bottom = -169.0
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(1.14876, 1.69871)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2

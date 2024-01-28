@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://6170weclm800"]
+[gd_scene load_steps=58 format=3 uid="uid://6170weclm800"]
 
 [ext_resource type="Script" path="res://Scripts/main_game_pause.gd" id="1_2colx"]
 [ext_resource type="PackedScene" uid="uid://c1ybkt20go022" path="res://Scenes/mic_stand.tscn" id="1_4eyq0"]
@@ -34,10 +34,10 @@
 [ext_resource type="Script" path="res://Scripts/hollow.gd" id="29_81es2"]
 [ext_resource type="Script" path="res://Scripts/hit.gd" id="29_oiyjp"]
 [ext_resource type="Texture2D" uid="uid://5uubv6fxm4v6" path="res://Assets/talk.png" id="30_1dj8p"]
-[ext_resource type="FontFile" uid="uid://c8xeqksj6y2nh" path="res://Assets/Fonts/papyrus.ttf" id="33_0svao"]
 [ext_resource type="AudioStream" uid="uid://cm4bijmsfx5id" path="res://Assets/miss_3.wav" id="30_vm1k6"]
 [ext_resource type="AudioStream" uid="uid://c8nho2dpg4dgd" path="res://Assets/miss_2.wav" id="31_nwiya"]
 [ext_resource type="AudioStream" uid="uid://dpmm8qtoei0x" path="res://Assets/miss_1.wav" id="32_q1dr3"]
+[ext_resource type="FontFile" uid="uid://c8xeqksj6y2nh" path="res://Assets/Fonts/papyrus.ttf" id="33_0svao"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mvsiy"]
 radius = 24.0208
