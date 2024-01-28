@@ -26,7 +26,7 @@ func _process(delta):
 		queue_free()
 		return
 
-	global_position.y += delta * 450
+	global_position.y += delta * 350
 		
 	if state_ == "miss":
 		if global_position.y > 500:

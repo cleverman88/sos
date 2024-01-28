@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var pause_menu = $PauseMenu
+@onready var rect = $ColorRect
 var paused = false 
 
 @onready var notes = preload("res://Scenes/note_new.tscn")
@@ -22,8 +23,8 @@ func _ready():
 	process_mode = Node.PROCESS_MODE_PAUSABLE
 	
 func _process(delta):
-	if Input.is_action_just_pressed("pause"):
-		pauseMenu()
+	#if Input.is_action_just_pressed("pause"):
+		#pauseMenu()
 	delta_sum_ += delta
 	
 	for s in stuff.values():
@@ -61,7 +62,7 @@ func _on_midi_player_midi_event(channel, event):
 	var s = stuff.get(event.type)
 	if s:
 			var i = notes.instantiate()
-			add_child(i)
+			rect.add_child(i)
 			i.expected_time     = delta_sum_ + 1.0
 			i.global_rotation   = s.node.global_rotation
 			i.global_position.y = 125
