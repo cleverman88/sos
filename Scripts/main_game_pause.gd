@@ -5,7 +5,7 @@ extends Node2D
 
 @onready var hitscan = $Node2D/AnimationPlayer
 
-
+@onready var wobble = $morale/AnimationPlayer
 
 var paused = false 
 
@@ -39,6 +39,7 @@ var last_note
 var rng = RandomNumberGenerator.new()
 
 func _ready():
+	wobble.play("wobble")
 	process_mode = Node.PROCESS_MODE_PAUSABLE
 	rng.randomize()
 	
