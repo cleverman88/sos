@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var pause_menu = $PauseMenu
+@onready var h = $TextureRect/AnimationPlayer
 var paused = false 
 
 @onready var notes = preload("res://Scenes/note_new.tscn")
@@ -101,11 +102,13 @@ func _on_midi_player_midi_event(channel, event):
 func missed():
 	get_tree().get_nodes_in_group("combo")[0].total_combo = 1
 	get_tree().get_nodes_in_group("life")[0].total_lives -= 1
+	h.play("hit")
 	if get_tree().get_nodes_in_group("life")[0].total_lives == 0:
-		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")		
-	
+		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
+				
 func hit():
 	get_tree().get_nodes_in_group("combo")[0].total_combo *= 2
 	get_tree().get_nodes_in_group("score")[0].total_score += (get_tree().get_nodes_in_group("combo")[0].total_combo *  19)
+
 	print("HIT")
 

@@ -511,10 +511,10 @@ texture = ExtResource("24_j6jbo")
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 texture_filter = 1
-offset_left = -116.0
-offset_top = -300.0
-offset_right = 1603.0
-offset_bottom = 721.0
+offset_left = -68.0
+offset_top = 132.0
+offset_right = 1651.0
+offset_bottom = 1153.0
 texture = ExtResource("28_vqjcc")
 expand_mode = 1
 script = ExtResource("29_oiyjp")
