@@ -2,6 +2,11 @@ extends Node2D
 
 @onready var pause_menu = $PauseMenu
 @onready var h = $TextureRect/AnimationPlayer
+
+@onready var hitscan = $Node2D/AnimationPlayer
+
+
+
 var paused = false 
 
 @onready var notes = preload("res://Scenes/note_new.tscn")
@@ -43,6 +48,10 @@ func _process(delta):
 		if Input.is_action_just_pressed(s.key):
 			if not (len(s.queue) == 0):
 				if s.queue.front().test_hit(delta_sum_):
+					if s.key == "ui_left":
+						hitscan.play("glow")
+					if s.key == "ui_right":
+						hitscan.play("glow2")
 					s.queue.pop_front().hit(s.node.global_position)
 					hit()
 				else:
