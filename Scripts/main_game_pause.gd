@@ -132,6 +132,7 @@ func missed():
 	h.play("hit")
 	var sfx = AudioStreamPlayer.new()
 	sfx.stream = load("res://Assets/miss" + str(rng.randi_range(1, 3)) + ".wav")
+	sfx.volume_db = 20
 	add_child(sfx)
 	sfx.play()
 	if get_tree().get_nodes_in_group("life")[0].total_lives == 0:
