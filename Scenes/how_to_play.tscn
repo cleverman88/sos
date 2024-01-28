@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvbd7yypt3jgg"]
+[gd_scene load_steps=4 format=3 uid="uid://de6yksrlpi384"]
 
 [ext_resource type="Script" path="res://Scenes/how_to_play.gd" id="1_ddcpw"]
-[ext_resource type="Texture2D" uid="uid://603qvvxsr5q7" path="res://Assets/BackgroundHTP.png" id="1_qephu"]
-[ext_resource type="AudioStream" uid="uid://dgnu4sjg2lpxs" path="res://Assets/tracks/GGJ24_Title_Screen_Track_Kapi.wav" id="2_iswyt"]
+[ext_resource type="Texture2D" path="res://Assets/BackgroundHTP.png" id="1_qephu"]
+[ext_resource type="AudioStream" path="res://Assets/tracks/GGJ24_Title_Screen_Track_Kapi.wav" id="2_iswyt"]
 
 [node name="HowToPlay" type="Control"]
 layout_mode = 3

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/Volume_Menu.gd" id="1_bwh21"]
 [ext_resource type="Texture2D" uid="uid://c131nuiw1p1xg" path="res://Assets/optionsbackground.jpg" id="2_e8ylv"]
-[ext_resource type="AudioStream" uid="uid://k7m8y36dqsb2" path="res://Assets/GGJ24_Title_Screen_Track (1).wav" id="2_f31ug"]
 [ext_resource type="Shader" path="res://Shaders/main_game.gdshader" id="3_e2iay"]
+[ext_resource type="AudioStream" path="res://Assets/tracks/GGJ24_Title_Screen_Track_Kapi.wav" id="4_mhwir"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pupwm"]
 shader = ExtResource("3_e2iay")
@@ -88,7 +88,7 @@ layout_mode = 2
 text = "Back"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_f31ug")
+stream = ExtResource("4_mhwir")
 
 [connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
